@@ -1,4 +1,4 @@
-/* MoneyMate web demo — talks to the backend on the same origin (no CORS). */
+/* MoneyWise web demo — talks to the backend on the same origin (no CORS). */
 (function () {
   "use strict";
 
