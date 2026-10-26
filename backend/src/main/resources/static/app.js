@@ -86,7 +86,10 @@
     await loadProfile();
     await loadBudget();
     await loadHealthScore();
+    await loadForecast();
+    await loadCredit();
     await loadGoals();
+    await loadCircles();
   }
 
   // ============ FINANCIAL HEALTH SCORE ============
@@ -440,5 +443,201 @@
     if (navBtn) navBtn.classList.add("active");
     const tabEl = $("tab-" + tab);
     if (tabEl) tabEl.classList.add("active");
+  }
+
+  // ============ SMART SPENDING PREDICTIONS ============
+  async function loadForecast() {
+    try {
+      const f = await api("/budget/forecast?horizonDays=14");
+      $("fc-in").textContent = fmtMoney(f.predictedIncomeMinor, f.currency);
+      $("fc-out").textContent = fmtMoney(f.predictedExpenseMinor, f.currency);
+      $("fc-summary").textContent = f.explanation.summary;
+      const lean = $("fc-lean");
+      if (f.leanPeriods && f.leanPeriods.length) {
+        lean.textContent = "⚠️ " + f.leanPeriods.length +
+          " lean week(s) ahead — spending may outpace income. A small buffer now helps.";
+        show(lean);
+      } else {
+        hide(lean);
+      }
+    } catch (e) { /* non-fatal */ }
+  }
+
+  // ============ CREDIT READINESS ============
+  async function loadCredit() {
+    try {
+      const c = await api("/credit-readiness");
+      $("credit-tier").textContent = c.tier;
+      $("credit-score").textContent = c.readinessScore + "/100";
+      $("credit-fill").style.width = c.readinessScore + "%";
+      $("credit-disclaimer").textContent = c.disclaimer;
+
+      const detail = $("credit-detail");
+      let html = "";
+      if (c.strengths && c.strengths.length) {
+        html += "<h5 class='good'>What's working</h5><ul>" +
+          c.strengths.map((s) => `<li class='good'>✓ ${s}</li>`).join("") + "</ul>";
+      }
+      if (c.improvements && c.improvements.length) {
+        html += "<h5 class='improve'>What to improve</h5><ul>" +
+          c.improvements.map((s) => `<li class='improve'>→ ${s}</li>`).join("") + "</ul>";
+      }
+      detail.innerHTML = html;
+    } catch (e) { /* non-fatal */ }
+  }
+
+  const creditBtn = $("btn-credit-detail");
+  if (creditBtn) creditBtn.addEventListener("click", () => $("credit-detail").classList.toggle("hidden"));
+
+  // ============ SAVINGS CIRCLES ============
+  let activeCircleId = null;
+
+  $("circle-amount").addEventListener("input", (e) => {
+    $("circle-amount-label").textContent = e.target.value || "0";
+  });
+
+  $("btn-create-circle").addEventListener("click", async () => {
+    const name = $("circle-name").value.trim() || "My Circle";
+    const rands = parseInt($("circle-amount").value, 10) || 0;
+    if (rands <= 0) return;
+    const btn = $("btn-create-circle");
+    btn.disabled = true;
+    try {
+      const circle = await api("/circles", {
+        method: "POST",
+        body: { name, type: "rosca", contributionMinor: rands * 100, currency: "ZAR", cadence: "weekly", memberLimit: 3 },
+      });
+      // Demo convenience: add the two seeded members and start the circle.
+      await addDemoMembersAndStart(circle.circleId);
+      showCircleToast("✓ Circle created with 3 members and started!");
+      await loadCircles();
+      await openCircle(circle.circleId);
+    } catch (e) {
+      showCircleToast(e.message);
+    } finally {
+      btn.disabled = false;
+    }
+  });
+
+  // The two extra demo users' ids aren't known client-side, so we resolve them
+  // by signing in as them once to capture their userIds (demo-only shortcut).
+  async function addDemoMembersAndStart(circleId) {
+    const grace = await demoUserId("+27830000002");
+    const maria = await demoUserId("+27830000003");
+    if (grace) await api(`/circles/${circleId}/members`, { method: "POST", body: { userId: grace } });
+    if (maria) await api(`/circles/${circleId}/members`, { method: "POST", body: { userId: maria } });
+    await api(`/circles/${circleId}/start`, { method: "POST", body: {} });
+  }
+
+  async function demoUserId(phone) {
+    try {
+      const otp = await api("/auth/otp/request", { method: "POST", auth: false, body: { phone } });
+      const auth = await api("/auth/otp/verify", { method: "POST", auth: false, body: { challengeId: otp.challengeId, code: otp.devCode } });
+      return auth.userId;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  async function loadCircles() {
+    try {
+      const circles = await api("/circles");
+      const list = $("circles-list");
+      list.innerHTML = "";
+      if (!circles.length) {
+        list.innerHTML = '<p class="hint">No circles yet. Start one below.</p>';
+        return;
+      }
+      circles.forEach((c) => {
+        const div = document.createElement("div");
+        div.className = "circle-item";
+        div.innerHTML =
+          `<div class="circle-head"><strong>👥 ${c.name}</strong>` +
+          `<span class="circle-badge">${c.status}</span></div>` +
+          `<p class="hint">${fmtMoney(c.contributionMinor, c.currency)}/${c.cadence} · ${c.memberCount} members · cycle ${c.currentCycleNo}</p>`;
+        div.addEventListener("click", () => openCircle(c.circleId));
+        list.appendChild(div);
+      });
+    } catch (e) { /* non-fatal */ }
+  }
+
+  async function openCircle(circleId) {
+    activeCircleId = circleId;
+    const c = await api("/circles/" + circleId);
+    const cur = c.currentCycle;
+    const detail = $("circle-detail");
+
+    const members = c.members.map((m) => {
+      const paid = m.contributedThisCycle;
+      const initial = m.userId.substring(0, 1).toUpperCase();
+      return `<div class="member-row"><span class="member-dot">${m.payoutPosition}</span>` +
+        `<span>Member ${m.payoutPosition}${m.userId === c.organiserUserId ? " (organiser)" : ""}</span>` +
+        `<span class="member-paid ${paid ? "yes" : "no"}">${paid ? "✓ paid" : "waiting"}</span></div>`;
+    }).join("");
+
+    let potBlock = "";
+    let actions = "";
+    if (cur) {
+      potBlock = `<div class="circle-pot"><div class="amt">${fmtMoney(cur.potMinor, c.currency)}</div>` +
+        `<div class="lbl">in the pot · cycle ${cur.cycleNumber} · ${cur.contributionsIn}/${cur.totalMembers} paid</div></div>`;
+      const allPaid = cur.contributionsIn >= cur.totalMembers;
+      actions =
+        `<div class="circle-actions">` +
+        `<button class="btn btn-primary" id="btn-circle-contribute">I'll pay my ${fmtMoney(c.contributionMinor, c.currency)}</button>` +
+        `<button class="btn btn-primary" id="btn-circle-payout" ${allPaid ? "" : "disabled"}>Pay out the pot</button>` +
+        `</div>` +
+        (allPaid ? "" : `<div class="payout-blocked">🔒 Payout is locked until everyone has paid in — no one can take the pot early.</div>`);
+    }
+
+    detail.innerHTML =
+      `<div class="card"><div class="circle-head"><strong>${c.name}</strong>` +
+      `<span class="circle-badge">${c.status}</span></div>` +
+      potBlock + members + actions + `</div>`;
+
+    const cBtn = $("btn-circle-contribute");
+    if (cBtn) cBtn.addEventListener("click", async () => {
+      try {
+        // Thandi (the signed-in user) pays her share.
+        await api(`/circles/${circleId}/contributions`, { method: "POST", body: { amountMinor: c.contributionMinor } });
+        // Demo: the other members pay in too, each from their own session,
+        // so you can see the pot fill and the payout unlock.
+        await othersContribute(circleId, c.contributionMinor);
+        await openCircle(circleId);
+        await loadCircles();
+      } catch (e) { showCircleToast(e.message); }
+    });
+
+    const pBtn = $("btn-circle-payout");
+    if (pBtn) pBtn.addEventListener("click", async () => {
+      try {
+        const r = await api(`/circles/${circleId}/payout`, { method: "POST", body: {} });
+        showCircleToast(`🎉 Pot of ${fmtMoney(r.potMinor, c.currency)} paid out! Now on cycle ${r.nextCycleNo}.`);
+        await openCircle(circleId);
+        await loadCircles();
+      } catch (e) { showCircleToast(e.message); }
+    });
+  }
+
+  // Demo helper: Grace & Maria contribute from their own tokens so a full
+  // round can be shown. Real app: each member pays from their own device.
+  async function othersContribute(circleId, amountMinor) {
+    for (const phone of ["+27830000002", "+27830000003"]) {
+      try {
+        const otp = await api("/auth/otp/request", { method: "POST", auth: false, body: { phone } });
+        const auth = await api("/auth/otp/verify", { method: "POST", auth: false, body: { challengeId: otp.challengeId, code: otp.devCode } });
+        await fetch(API + `/circles/${circleId}/contributions`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "Authorization": "Bearer " + auth.accessToken },
+          body: JSON.stringify({ amountMinor }),
+        });
+      } catch (e) { /* member may have already paid; ignore in demo */ }
+    }
+  }
+
+  function showCircleToast(msg) {
+    const t = $("circle-toast");
+    t.textContent = msg;
+    show(t);
+    setTimeout(() => hide(t), 5000);
   }
 })();

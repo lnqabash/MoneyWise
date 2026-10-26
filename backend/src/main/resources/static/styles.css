@@ -256,3 +256,43 @@ input:focus, textarea:focus { outline: 2px solid var(--mm-primary); border-color
 .voice-reply:empty { display: none; }
 .voice-examples { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; margin: 12px 0; font-size: 13px; color: var(--mm-muted); align-items: center; }
 .voice-eg { background: #fff; border: 1px solid var(--mm-line); border-radius: 14px; padding: 6px 12px; font-size: 13px; cursor: pointer; font-family: inherit; }
+
+/* ===== Forecast card ===== */
+.forecast-card { background: var(--mm-surface); border: 1px solid var(--mm-line); border-radius: var(--radius); padding: 16px; }
+.forecast-row { display: flex; gap: 12px; }
+.forecast-row > div { flex: 1; display: flex; flex-direction: column; }
+.forecast-label { font-size: 12px; color: var(--mm-muted); }
+.forecast-val { font-size: 20px; font-weight: 800; color: var(--mm-ink); }
+.forecast-summary { font-size: 14px; color: var(--mm-muted); margin-top: 10px; }
+.fc-lean { margin-top: 10px; background: #FEECE8; border: 1px solid #F3C9BF; color: #7a2316; border-radius: 10px; padding: 10px 12px; font-size: 13px; }
+
+/* ===== Credit readiness ===== */
+.credit-card { background: var(--mm-surface); border: 1px solid var(--mm-line); border-radius: var(--radius); padding: 16px; }
+.credit-head { display: flex; justify-content: space-between; align-items: baseline; }
+.credit-tier { font-weight: 800; color: var(--mm-primary); font-size: 18px; }
+.credit-score { font-size: 14px; color: var(--mm-muted); }
+.credit-bar { height: 10px; background: var(--mm-line); border-radius: 5px; margin: 10px 0 12px; overflow: hidden; }
+.credit-fill { height: 100%; background: linear-gradient(90deg, var(--mm-warn), var(--mm-safe)); border-radius: 5px; transition: width .5s ease; }
+.credit-detail { margin-top: 12px; }
+.credit-detail h5 { font-size: 13px; margin: 8px 0 4px; }
+.credit-detail ul { margin-left: 18px; }
+.credit-detail li { font-size: 13px; margin: 3px 0; }
+.credit-detail .good { color: var(--mm-safe); }
+.credit-detail .improve { color: var(--mm-warn); }
+.credit-disclaimer { font-size: 11px; color: var(--mm-muted); margin-top: 10px; font-style: italic; }
+
+/* ===== Circles ===== */
+.circle-item { background: var(--mm-surface); border: 1px solid var(--mm-line); border-radius: var(--radius); padding: 16px; margin-bottom: 10px; cursor: pointer; }
+.circle-head { display: flex; justify-content: space-between; align-items: center; }
+.circle-badge { background: #EAF5EF; color: var(--mm-primary-dark); border-radius: 11px; padding: 3px 10px; font-size: 12px; font-weight: 700; }
+.member-row { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-top: 1px solid var(--mm-line); font-size: 14px; }
+.member-dot { width: 26px; height: 26px; border-radius: 50%; background: var(--mm-primary); color: #fff; display: grid; place-items: center; font-size: 12px; font-weight: 700; }
+.member-paid { margin-left: auto; font-size: 12px; font-weight: 700; }
+.member-paid.yes { color: var(--mm-safe); }
+.member-paid.no { color: var(--mm-muted); }
+.circle-pot { text-align: center; padding: 14px; background: linear-gradient(160deg, var(--mm-primary), var(--mm-primary-dark)); color: #fff; border-radius: 12px; margin: 10px 0; }
+.circle-pot .amt { font-size: 30px; font-weight: 800; }
+.circle-pot .lbl { font-size: 12px; color: #CDEBD9; }
+.circle-actions { display: flex; gap: 8px; }
+.circle-actions .btn { flex: 1; }
+.payout-blocked { background: #FEECE8; border: 1px solid #F3C9BF; color: #7a2316; border-radius: 10px; padding: 10px; font-size: 13px; margin-top: 8px; }

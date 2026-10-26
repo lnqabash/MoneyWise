@@ -81,11 +81,33 @@
         </div>
         <div id="health-pillars" class="pillars hidden"></div>
 
+        <h3 class="section-title">The next 2 weeks</h3>
+        <div class="forecast-card" id="forecast-card">
+          <div class="forecast-row">
+            <div><span class="forecast-label">Expected in</span><span class="forecast-val" id="fc-in">…</span></div>
+            <div><span class="forecast-label">Expected out</span><span class="forecast-val" id="fc-out">…</span></div>
+          </div>
+          <p class="forecast-summary" id="fc-summary"></p>
+          <div id="fc-lean" class="fc-lean hidden"></div>
+        </div>
+
         <h3 class="section-title">Your spending</h3>
         <div id="envelopes" class="envelopes"></div>
 
         <h3 class="section-title">Your goal</h3>
         <div id="goal-card" class="goal-card">Loading…</div>
+
+        <h3 class="section-title">Credit readiness</h3>
+        <div class="credit-card" id="credit-card">
+          <div class="credit-head">
+            <span class="credit-tier" id="credit-tier">…</span>
+            <span class="credit-score" id="credit-score"></span>
+          </div>
+          <div class="credit-bar"><div class="credit-fill" id="credit-fill"></div></div>
+          <button class="chip chip-ghost" id="btn-credit-detail">What helps & what to improve</button>
+          <div id="credit-detail" class="credit-detail hidden"></div>
+          <p class="credit-disclaimer" id="credit-disclaimer"></p>
+        </div>
 
         <div class="tip">
           <span>💡</span>
@@ -117,6 +139,26 @@
           <button id="btn-scan" class="btn btn-primary">Check this message</button>
         </div>
         <div id="scam-result" class="hidden"></div>
+      </div>
+
+      <!-- Circles tab -->
+      <div id="tab-circles" class="tab">
+        <h3 class="section-title">👥 Savings Circles</h3>
+        <p class="hint">Save together, like a stokvel — but transparent and scam-safe.</p>
+        <div id="circles-list"></div>
+        <div class="card" id="circle-create-card">
+          <h4>Start a circle</h4>
+          <div class="row">
+            <input id="circle-name" type="text" value="Market Traders" placeholder="Circle name" />
+          </div>
+          <div class="row">
+            <input id="circle-amount" type="number" value="200" min="1" title="Weekly contribution (R)" />
+            <button id="btn-create-circle" class="btn btn-primary">Create (R<span id="circle-amount-label">200</span>/wk)</button>
+          </div>
+          <p class="toast hidden" id="circle-toast"></p>
+          <p class="hint">Demo: creates a circle and auto-adds Grace & Maria so you can run a full round.</p>
+        </div>
+        <div id="circle-detail"></div>
       </div>
 
       <!-- Learn tab (static preview) -->
@@ -151,6 +193,7 @@
       <nav class="bottom-nav">
         <button class="nav-item active" data-tab="home"><span>🏠</span>Home</button>
         <button class="nav-item" data-tab="save"><span>🎯</span>Save</button>
+        <button class="nav-item" data-tab="circles"><span>👥</span>Circles</button>
         <button class="nav-item scam" data-tab="scam"><span>🛡️</span>Shield</button>
         <button class="nav-item" data-tab="learn"><span>📚</span>Learn</button>
       </nav>
