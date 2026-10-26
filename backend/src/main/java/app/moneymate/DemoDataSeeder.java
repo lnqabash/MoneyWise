@@ -71,5 +71,17 @@ public class DemoDataSeeder implements CommandLineRunner {
                 today.plusMonths(3), "good_day", 2000L);
         carRepair.contribute(46000);
         goals.save(carRepair);
+
+        // Two more members so Community Circles can be demoed end to end.
+        seedMember("+27830000002", "Grace", "zu");
+        seedMember("+27830000003", "Maria", "zu");
+    }
+
+    private void seedMember(String phone, String name, String language) {
+        if (users.existsByPhoneE164(phone)) return;
+        User u = User.create(phone, "ZAR");
+        u.setDisplayName(name);
+        u.setPreferredLanguage(language);
+        users.save(u);
     }
 }

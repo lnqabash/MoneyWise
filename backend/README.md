@@ -14,6 +14,9 @@ Architecture follows [ADR-0002](../docs/adr/0002-microservices-vs-monolith.md): 
 | `scam` | `POST /v1/scam/scan`, `POST /v1/scam/{id}/action` | Rule-based explainable detection; raw content hashed, never stored |
 | `health` | `GET /v1/health-score` | ⭐ AI Financial Health Score — 4 explainable pillars (see [Differentiators](../docs/16-differentiators.md)) |
 | `ledger` | `GET /v1/transactions` | Immutable, idempotent money ledger — single source of truth for all movements |
+| `circles` | `POST /v1/circles`, `/{id}/members`, `/{id}/start`, `/{id}/contributions`, `/{id}/payout`, `GET /v1/circles` | ⭐ Community Savings Circles (ROSCA stokvels) with transparent ledger + guarded payout |
+
+**Phase 2 — Community Savings Circles:** digitised stokvels/chamas. An organiser creates a circle; members join (each gets a rotation position); the circle starts; everyone contributes a fixed amount per cycle; the pot pays out to the scheduled rotation member. **Safety:** payout is server-guarded — it's blocked until every active member has contributed, and it always pays the scheduled recipient, so no single party (even the organiser) can divert funds. All money moves through the central ledger. Three demo members are seeded (Thandi +27830000001, Grace +27830000002, Maria +27830000003).
 
 **Tier 1 (fully-functional) additions:**
 - **Transactions ledger** — income, expenses, save sweeps, and withdrawals all post real, idempotent ledger rows (`app.moneymate.ledger`).
@@ -104,6 +107,7 @@ src/main/java/app/moneymate
 ├── scam/                          # explainable rule-based Scam Shield
 ├── health/                        # AI Financial Health Score (4 pillars)
 ├── ledger/                        # immutable transactions ledger
+├── circles/                       # Community Savings Circles (ROSCA)
 └── common/events/                 # in-process life-events (income.recorded)
 src/main/resources
 ├── static/                        # web demo (index.html, app.js, styles.css)

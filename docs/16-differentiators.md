@@ -6,7 +6,7 @@ Three capabilities that set MoneyMate apart for judges, users, and partners. Eac
 |---|---|---|
 | 1. AI Financial Health Score | A credit score for the financially excluded — builds trust, not gatekeeping | **Built** (backend + demo) |
 | 2. Voice-First Assistant | Removes the literacy & typing barrier entirely | **Built** (web demo via Web Speech; Azure Speech in prod) |
-| 3. Community Savings Circles | Digitises trusted stokvels/chamas — social trust + retention | **Designed** (spec below) |
+| 3. Community Savings Circles | Digitises trusted stokvels/chamas — social trust + retention | **Built** (backend; ROSCA lifecycle + guarded payout) |
 
 ---
 
@@ -169,8 +169,8 @@ GET  /v1/circles/{id}/cycles          rotation schedule & payout history
 POST /v1/circles/{id}/payout          release the pot (guarded, multi-condition)
 ```
 
-### Build phasing
-Full Circles require multi-user money movement, a settlement/ledger with escrow, and dispute handling — so it is a **Phase 2** build (see roadmap), delivered after the single-user slice is hardened. A **read-only preview** can be shown in the demo (a sample circle with a transparent ledger) to tell the story without the settlement risk.
+### Build status (reference backend)
+Implemented in `app.moneymate.circles`: create circle, join (auto rotation position), organiser-only start, fixed per-cycle contributions, and a **guarded payout** that is blocked until every active member has contributed and always pays the scheduled rotation recipient — so no single party (including the organiser) can divert funds. Every contribution and payout posts to the central transactions ledger. Endpoints: `POST /v1/circles`, `POST /v1/circles/{id}/members`, `POST /v1/circles/{id}/start`, `POST /v1/circles/{id}/contributions`, `POST /v1/circles/{id}/payout`, `GET /v1/circles`, `GET /v1/circles/{id}`. Verified end to end with a 3-member ROSCA. Remaining for production: escrow/settlement with a real payment rail, late/missed-contribution handling, and dispute resolution.
 
 ### Trust & safety notes
 - Money movement uses the **transactions ledger** + **saga** pattern ([System Architecture](05-system-architecture.md)) with escrow so no single party (including the organiser) can divert funds.
