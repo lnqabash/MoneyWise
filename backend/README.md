@@ -16,6 +16,18 @@ Architecture follows [ADR-0002](../docs/adr/0002-microservices-vs-monolith.md): 
 | `ledger` | `GET /v1/transactions` | Immutable, idempotent money ledger — single source of truth for all movements |
 | `circles` | `POST /v1/circles`, `/{id}/members`, `/{id}/start`, `/{id}/contributions`, `/{id}/payout`, `GET /v1/circles` | ⭐ Community Savings Circles (ROSCA stokvels) with transparent ledger + guarded payout |
 
+**More Phase 2/3 logic features (built + verified):**
+- **Smart Spending Predictions** — `GET /v1/budget/forecast?horizonDays=14` projects income/expense and flags lean weeks, with explanations.
+- **Lump-Sum Smoothing** — `POST /v1/budget/smooth` turns a windfall into a steady weekly "personal salary" (slices to emergency + goals).
+- **Expense auto-categorisation** — `POST /v1/expenses` infers a category from a free-text `note` when `category` is omitted/"auto".
+- **Credit-Readiness** — `GET /v1/credit-readiness` derives a consent-based readiness tier from behaviour (health score + ledger activity). Explicitly a guide, not a credit decision.
+
+**External-service adapters (ports, per [ADR-0005](../docs/adr/0005-vendor-abstraction.md)):**
+The core depends on ports with offline stub implementations, so the app runs fully without external accounts; dropping in a real provider is a bean/config change, not new core code.
+- `adapters/messaging` — `MessagingPort` (SMS/WhatsApp). OTP now flows through it (stub logs; real adapter = Twilio/Africa's Talking/telco).
+- `adapters/ai` — `AiCompletionPort` (LLM generation/translation). Stub returns grounded text; real adapter = Azure OpenAI.
+- `adapters/mobilemoney` — `MobileMoneyPort` (M-Pesa/bank). Stub reports "not wired" so money is never falsely claimed to move externally.
+
 **Phase 2 — Community Savings Circles:** digitised stokvels/chamas. An organiser creates a circle; members join (each gets a rotation position); the circle starts; everyone contributes a fixed amount per cycle; the pot pays out to the scheduled rotation member. **Safety:** payout is server-guarded — it's blocked until every active member has contributed, and it always pays the scheduled recipient, so no single party (even the organiser) can divert funds. All money moves through the central ledger. Three demo members are seeded (Thandi +27830000001, Grace +27830000002, Maria +27830000003).
 
 **Tier 1 (fully-functional) additions:**

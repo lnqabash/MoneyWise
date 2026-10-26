@@ -19,15 +19,22 @@ public class BudgetService {
     private final IncomeRepository incomes;
     private final ExpenseRepository expenses;
     private final SafeToSpendCalculator calculator;
+    private final ForecastEngine forecastEngine;
+    private final SmoothingEngine smoothingEngine;
+    private final ExpenseCategoriser categoriser;
     private final LedgerService ledger;
     private final ApplicationEventPublisher events;
 
     public BudgetService(IncomeRepository incomes, ExpenseRepository expenses,
-                         SafeToSpendCalculator calculator, LedgerService ledger,
-                         ApplicationEventPublisher events) {
+                         SafeToSpendCalculator calculator, ForecastEngine forecastEngine,
+                         SmoothingEngine smoothingEngine, ExpenseCategoriser categoriser,
+                         LedgerService ledger, ApplicationEventPublisher events) {
         this.incomes = incomes;
         this.expenses = expenses;
         this.calculator = calculator;
+        this.forecastEngine = forecastEngine;
+        this.smoothingEngine = smoothingEngine;
+        this.categoriser = categoriser;
         this.ledger = ledger;
         this.events = events;
     }
@@ -49,15 +56,18 @@ public class BudgetService {
     }
 
     @Transactional
-    public UUID recordExpense(UUID userId, ExpenseBody body) {
-        Expense expense = Expense.create(userId, body.amountMinor(), body.currency(), body.category(),
+    public ExpenseResult recordExpense(UUID userId, ExpenseBody body) {
+        var categorised = categoriser.categorise(body.category(), body.note());
+        Expense expense = Expense.create(userId, body.amountMinor(), body.currency(), categorised.category(),
                 body.capture() == null ? "manual" : body.capture(), body.isBusiness(), body.spentOn());
         expenses.save(expense);
 
         ledger.recordExpense(userId, body.amountMinor(), body.currency(), expense.getExpenseId());
 
-        return expense.getExpenseId();
+        return new ExpenseResult(expense.getExpenseId(), categorised.category(), categorised.autoCategorised());
     }
+
+    public record ExpenseResult(UUID expenseId, String category, boolean autoCategorised) {}
 
     @Transactional(readOnly = true)
     public BudgetResponse currentBudget(UUID userId, String currency) {
@@ -68,5 +78,19 @@ public class BudgetService {
         SafeToSpendResult r = calculator.compute(currency, incomeList, expenseList);
         return new BudgetResponse("dynamic_envelope", r.safeToSpendTodayMinor(), r.currency(),
                 r.confidence(), r.envelopes(), r.explanation());
+    }
+
+    @Transactional(readOnly = true)
+    public app.moneymate.budget.dto.BudgetDtos.ForecastResponse forecast(
+            UUID userId, String currency, int horizonDays) {
+        LocalDate windowStart = LocalDate.now().minusDays(56);
+        var incomeList = incomes.findByUserIdAndReceivedOnGreaterThanEqual(userId, windowStart);
+        var expenseList = expenses.findByUserIdAndSpentOnGreaterThanEqual(userId, windowStart);
+        return forecastEngine.forecast(currency, incomeList, expenseList, horizonDays);
+    }
+
+    public app.moneymate.budget.dto.BudgetDtos.SmoothingResponse smooth(
+            String currency, long amountMinor, int weeks) {
+        return smoothingEngine.smooth(currency, amountMinor, weeks);
     }
 }

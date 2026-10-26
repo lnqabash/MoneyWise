@@ -25,12 +25,13 @@ public final class BudgetDtos {
     public record ExpenseBody(
             @Min(1) long amountMinor,
             @NotBlank String currency,
-            @NotBlank String category,
+            String category,          // optional: omit or "auto" to auto-categorise from note
+            String note,              // free-text / merchant, used for auto-categorisation
             String capture,
             boolean isBusiness,
             @NotNull LocalDate spentOn) {}
 
-    public record ExpenseResponse(String expenseId, String category) {}
+    public record ExpenseResponse(String expenseId, String category, boolean autoCategorised) {}
 
     public record Envelope(String name, long allocatedMinor, long spentMinor) {}
 
@@ -41,4 +42,21 @@ public final class BudgetDtos {
 
     public record BudgetResponse(String strategy, long safeToSpendTodayMinor, String currency,
                                  double confidence, List<Envelope> envelopes, Explanation explanation) {}
+
+    // Smart Spending Predictions (docs/07 GET /budget/forecast)
+    public record LeanPeriod(String from, String to, long shortfallMinor) {}
+
+    public record ForecastResponse(int horizonDays, long predictedIncomeMinor,
+                                   long predictedExpenseMinor, long projectedNetMinor,
+                                   String currency, double confidence,
+                                   List<LeanPeriod> leanPeriods, Explanation explanation) {}
+
+    // Lump-Sum Smoothing (allocate a windfall across weeks + goals)
+    public record SmoothingBody(long amountMinor, String currency, int weeks) {}
+
+    public record WeeklyAllocation(int week, long amountMinor) {}
+
+    public record SmoothingResponse(long amountMinor, String currency, int weeks,
+                                    long perWeekMinor, long toEmergencyMinor, long toGoalsMinor,
+                                    List<WeeklyAllocation> schedule, Explanation explanation) {}
 }

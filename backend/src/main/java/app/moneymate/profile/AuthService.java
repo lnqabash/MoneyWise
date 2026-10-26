@@ -41,11 +41,13 @@ public class AuthService {
     private final PasswordEncoder encoder;
     private final JwtService jwt;
     private final RefreshTokenService refreshTokens;
+    private final app.moneymate.adapters.messaging.MessagingPort messaging;
     private final boolean exposeOtp;
     private final long ttlSeconds;
 
     public AuthService(UserRepository users, OtpChallengeRepository otps,
                        PasswordEncoder encoder, JwtService jwt, RefreshTokenService refreshTokens,
+                       app.moneymate.adapters.messaging.MessagingPort messaging,
                        @Value("${moneymate.otp.expose-otp:false}") boolean exposeOtp,
                        @Value("${moneymate.otp.ttl-seconds:300}") long ttlSeconds) {
         this.users = users;
@@ -53,6 +55,7 @@ public class AuthService {
         this.encoder = encoder;
         this.jwt = jwt;
         this.refreshTokens = refreshTokens;
+        this.messaging = messaging;
         this.exposeOtp = exposeOtp;
         this.ttlSeconds = ttlSeconds;
     }
@@ -65,7 +68,8 @@ public class AuthService {
         String code = String.format("%06d", random.nextInt(1_000_000));
         OtpChallenge challenge = OtpChallenge.create(phone, encoder.encode(code), ttlSeconds);
         otps.save(challenge);
-        // TODO(phase2): deliver via telco SMS adapter (ADR-0005) instead of exposing in response.
+        // Deliver via the messaging port (stub logs; real adapter sends real SMS — ADR-0005).
+        messaging.sendOtp(phone, code);
         return new OtpRequestResult(
                 challenge.getChallengeId(), ttlSeconds, exposeOtp ? code : null);
     }

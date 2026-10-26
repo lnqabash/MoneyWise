@@ -33,9 +33,9 @@ public class BudgetController {
 
     @PostMapping("/expenses")
     public ResponseEntity<ExpenseResponse> recordExpense(@Valid @RequestBody ExpenseBody body) {
-        var id = budgetService.recordExpense(CurrentUser.id(), body);
+        var r = budgetService.recordExpense(CurrentUser.id(), body);
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body(new ExpenseResponse(id.toString(), body.category()));
+                .body(new ExpenseResponse(r.expenseId().toString(), r.category(), r.autoCategorised()));
     }
 
     @GetMapping("/budget/current")
@@ -43,5 +43,22 @@ public class BudgetController {
         var userId = CurrentUser.id();
         String currency = users.findById(userId).map(u -> u.getCurrency()).orElse("ZAR");
         return budgetService.currentBudget(userId, currency);
+    }
+
+    @GetMapping("/budget/forecast")
+    public app.moneymate.budget.dto.BudgetDtos.ForecastResponse forecast(
+            @org.springframework.web.bind.annotation.RequestParam(defaultValue = "14") int horizonDays) {
+        var userId = CurrentUser.id();
+        String currency = users.findById(userId).map(u -> u.getCurrency()).orElse("ZAR");
+        return budgetService.forecast(userId, currency, Math.min(60, Math.max(7, horizonDays)));
+    }
+
+    @PostMapping("/budget/smooth")
+    public app.moneymate.budget.dto.BudgetDtos.SmoothingResponse smooth(
+            @RequestBody app.moneymate.budget.dto.BudgetDtos.SmoothingBody body) {
+        var userId = CurrentUser.id();
+        String currency = body.currency() != null ? body.currency()
+                : users.findById(userId).map(u -> u.getCurrency()).orElse("ZAR");
+        return budgetService.smooth(currency, body.amountMinor(), body.weeks());
     }
 }
