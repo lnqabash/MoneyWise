@@ -1,6 +1,6 @@
 # 14 — Business Model
 
-MoneyMate must be commercially sustainable without extracting from the vulnerable users it serves. The model is **freemium + B2B2C + ecosystem fees** — the core safety and inclusion features are always free; revenue comes from premium power-users, partners, and value-added financial products, never from exploiting low-income users.
+MoneyWise must be commercially sustainable without extracting from the vulnerable users it serves. The model is **freemium + B2B2C + ecosystem fees** — the core safety and inclusion features are always free; revenue comes from premium power-users, partners, and value-added financial products, never from exploiting low-income users.
 
 ## Lean Canvas
 
@@ -30,7 +30,7 @@ flowchart TB
 | Stream | Description | Phase |
 |---|---|---|
 | **Freemium → Premium** | Free core (budget, save, scam, learn). Premium (~$1–2/mo, locally priced): advanced forecasting, lump-sum smoothing, multi-account, tax tools, deeper analytics. | MVP→P2 |
-| **B2B2C licensing** | Gig platforms, employers of informal/domestic workers, MFIs and co-ops embed MoneyMate for their workforce (per-seat/SaaS). Strong fit — platforms want financially stable workers. | P2 |
+| **B2B2C licensing** | Gig platforms, employers of informal/domestic workers, MFIs and co-ops embed MoneyWise for their workforce (per-seat/SaaS). Strong fit — platforms want financially stable workers. | P2 |
 | **Partner commissions** | Referral/commission on **suitable** partner products (micro-insurance, fair credit, savings/investment) surfaced contextually and transparently. | P3 |
 | **Financial-product fees** | Thin margin on facilitated products via licensed partners (not balance-sheet risk early). | P3 |
 | **Aggregated insights** | Consented, anonymised, aggregated financial-inclusion insights for development orgs/regulators. Never individual data; opt-in only. | P3 |
@@ -65,7 +65,7 @@ flowchart LR
 
 ## Partnership strategy
 
-| Partner type | Value to MoneyMate | Value to partner |
+| Partner type | Value to MoneyWise | Value to partner |
 |---|---|---|
 | **Telcos / MNOs** | USSD/SMS reach, airtime billing, distribution | Stickier subscribers, value-add service |
 | **Mobile-money providers** | Transaction data (consented), rails | Engagement, financial health of users |

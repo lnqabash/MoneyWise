@@ -3,7 +3,7 @@
 **Status:** Accepted · **Date:** 2026-10-25 · **Deciders:** Architecture
 
 ## Context
-MoneyMate depends on external providers that vary by market and over time: telcos/USSD gateways, mobile-money and bank APIs, LLM provider, threat-intel feeds, notification channels. Expanding market-by-market means swapping providers without rewriting core logic. There's also cloud lock-in risk from [ADR-0001](0001-cloud-provider-azure.md).
+MoneyWise depends on external providers that vary by market and over time: telcos/USSD gateways, mobile-money and bank APIs, LLM provider, threat-intel feeds, notification channels. Expanding market-by-market means swapping providers without rewriting core logic. There's also cloud lock-in risk from [ADR-0001](0001-cloud-provider-azure.md).
 
 ## Decision
 Isolate every external dependency behind a **port/adapter (hexagonal)** boundary with a stable internal interface. Core services depend on the port, not the concrete vendor. Provide per-market/per-vendor adapter implementations selected via configuration.

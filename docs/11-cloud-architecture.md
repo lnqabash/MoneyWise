@@ -108,7 +108,7 @@ flowchart TB
 - All infra via **IaC (Bicep/Terraform)** in Git; changes peer-reviewed + policy-scanned (see [DevOps](13-devops-pipeline.md)).
 
 ## Data residency
-Regional deployments keep user data in-country to satisfy local regulation; a multi-region topology lets MoneyMate expand market-by-market without co-mingling data.
+Regional deployments keep user data in-country to satisfy local regulation; a multi-region topology lets MoneyWise expand market-by-market without co-mingling data.
 
 ---
 

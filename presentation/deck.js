@@ -1,4 +1,4 @@
-/* MoneyMate pitch deck — navigation, progress, speaker notes, a11y. */
+/* MoneyWise pitch deck — navigation, progress, speaker notes, a11y. */
 (function () {
   "use strict";
 

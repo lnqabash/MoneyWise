@@ -103,7 +103,7 @@ Personal path as a simple vertical journey; LessonCards (2–3 min, audio play, 
 
 ## Visual mock — Dashboard
 
-![MoneyMate dashboard mock](kiro-artifact://74af4c3e-d93f-4620-aae8-428eb592c4e6)
+![MoneyWise dashboard mock](kiro-artifact://74af4c3e-d93f-4620-aae8-428eb592c4e6)
 
 ---
 
@@ -125,7 +125,7 @@ flowchart LR
 
 ## USSD parity (feature phones)
 ```
-*134# MoneyMate
+*134# MoneyWise
 1. Save money
 2. My balance
 3. My goals

@@ -114,7 +114,7 @@ jobs:
       - name: Update GitOps manifest
         run: ./scripts/bump-image.sh budget ${{ github.sha }}   # Argo reconciles
       - name: DAST (ZAP) on staging
-        run: zap-baseline.py -t https://staging.moneymate.app
+        run: zap-baseline.py -t https://staging.moneywise.app
 ```
 
 ---

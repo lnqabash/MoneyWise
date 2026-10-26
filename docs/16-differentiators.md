@@ -1,6 +1,6 @@
 # 16 — Flagship Differentiators
 
-Three capabilities that set MoneyMate apart for judges, users, and partners. Each is inclusion-first, reinforces the others, and maps to the core pains. Two are already implemented in the reference backend + web demo; the third is fully specified here for the next build phase.
+Three capabilities that set MoneyWise apart for judges, users, and partners. Each is inclusion-first, reinforces the others, and maps to the core pains. Two are already implemented in the reference backend + web demo; the third is fully specified here for the next build phase.
 
 | Differentiator | Why it matters | Status |
 |---|---|---|
@@ -21,7 +21,7 @@ An alternative to a credit score that rewards healthy **behaviour** rather than 
 | **Savings Consistency** | 30% | How regularly & how much the user saves relative to income | "You've saved 22% of recent income across your goals. Regular small saves raise this." |
 | **Financial Resilience** | 30% | Emergency buffer vs. monthly spend (target: 3 months) | "Your savings cover about 1.1 months of spending. Aim for 3 months." |
 | **Budget Adherence** | 20% | Spending kept within predicted safe-to-spend | "You spent 78% of your recent income. Keeping some back lifts this." |
-| **Income Stability** | 20% | Week-to-week income volatility (lower = higher score) | "Your income is uneven — MoneyMate smooths this with dynamic budgeting." |
+| **Income Stability** | 20% | Week-to-week income volatility (lower = higher score) | "Your income is uneven — MoneyWise smooths this with dynamic budgeting." |
 
 Overall = weighted sum → band: **Getting started (<40) · Finding footing (40–59) · Building (60–79) · Thriving (80+)**.
 
@@ -88,10 +88,10 @@ Voice FAB + panel in the web app; `handleUtterance()` matches intents and calls 
 
 ## 3. Community Savings Circles (digitised stokvels / chamas / ROSCAs)
 
-Informal savings groups — **stokvels** (South Africa), **chamas** (Kenya), **ROSCAs** worldwide — are how hundreds of millions already save. They work on social trust but suffer from cash risk, opaque bookkeeping, and fraud. MoneyMate digitises them **without destroying the social trust that makes them work**.
+Informal savings groups — **stokvels** (South Africa), **chamas** (Kenya), **ROSCAs** worldwide — are how hundreds of millions already save. They work on social trust but suffer from cash risk, opaque bookkeeping, and fraud. MoneyWise digitises them **without destroying the social trust that makes them work**.
 
 ### How it works
-A **Circle** is a group of members who contribute a fixed amount each cycle (e.g. R200/week). Each cycle the pooled pot pays out to one member in rotation (ROSCA model), or accumulates to a shared goal (ASCA model). MoneyMate adds transparency, reminders, fairness, and fraud protection.
+A **Circle** is a group of members who contribute a fixed amount each cycle (e.g. R200/week). Each cycle the pooled pot pays out to one member in rotation (ROSCA model), or accumulates to a shared goal (ASCA model). MoneyWise adds transparency, reminders, fairness, and fraud protection.
 
 ### Key features
 | Feature | Benefit |

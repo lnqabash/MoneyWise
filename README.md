@@ -1,4 +1,4 @@
-# MoneyMate — AI Financial Confidence Assistant
+ # MoneyWise — AI Financial Confidence Assistant
 
 > A secure, scalable, cloud-native fintech platform that improves financial inclusion and financial confidence for people with irregular incomes, limited financial knowledge, or limited access to formal financial services.
 

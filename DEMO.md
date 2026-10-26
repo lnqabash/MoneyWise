@@ -1,4 +1,4 @@
-# MoneyMate — Live Demo Script (~5 min)
+# MoneyWise — Live Demo Script (~5 min)
 
 A tight walkthrough of the working app. The hero is **Thandi**, a gig driver with irregular income. Everything below is live against the running backend — no slides needed.
 
@@ -15,7 +15,7 @@ A tight walkthrough of the working app. The hero is **Thandi**, a gig driver wit
 2. Open **http://localhost:8080/** in a browser (Chrome/Edge for the voice feature).
 3. Leave the sign-in screen showing. The demo account (Thandi) is pre-seeded.
 
-> One-liner if asked what it is: *"MoneyMate is an AI financial confidence assistant for people with irregular incomes — it budgets, saves, teaches, and protects them from scams, in their language, even offline."*
+> One-liner if asked what it is: *"MoneyWise is an AI financial confidence assistant for people with irregular incomes — it budgets, saves, teaches, and protects them from scams, in their language, even offline."*
 
 ---
 
@@ -28,7 +28,7 @@ A tight walkthrough of the working app. The hero is **Thandi**, a gig driver wit
 ### 2. Dashboard — the hero number (45s)
 - Point to **"You can safely spend today"**.
 - Tap **Why this number?**
-- **Say:** "Instead of a rigid monthly budget — useless when your income swings daily — MoneyMate gives one honest number: what's safe to spend today. And it explains itself in plain language. That transparency is how we build trust with users who've been burned before."
+- **Say:** "Instead of a rigid monthly budget — useless when your income swings daily — MoneyWise gives one honest number: what's safe to spend today. And it explains itself in plain language. That transparency is how we build trust with users who've been burned before."
 
 ### 3. Financial Health Score (30s)
 - Point to the score ring → tap **See the 4 pillars**.
@@ -52,10 +52,10 @@ A tight walkthrough of the working app. The hero is **Thandi**, a gig driver wit
 
 ### 7. Voice assistant — inclusion (30s)
 - Tap the **🎤** button → tap the example **"What is my health score?"** (or speak it).
-- **Say:** "For users who can't read well or type easily, voice is the whole app. She just asks, and MoneyMate answers out loud — in her language."
+- **Say:** "For users who can't read well or type easily, voice is the whole app. She just asks, and MoneyWise answers out loud — in her language."
 
 ### 8. Close (15s)
-- **Say:** "Budgeting, saving, learning, scam protection, community savings — built to work on a cheap phone, in any language, even offline. MoneyMate: money that makes sense, confidence that lasts."
+- **Say:** "Budgeting, saving, learning, scam protection, community savings — built to work on a cheap phone, in any language, even offline. MoneyWise: money that makes sense, confidence that lasts."
 
 ---
 

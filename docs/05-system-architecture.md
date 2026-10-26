@@ -10,12 +10,12 @@ Guiding non-functional requirements (NFRs): offline tolerance, low-data payloads
 
 ```mermaid
 C4Context
-    title MoneyMate — System Context
+    title MoneyWise — System Context
 
     Person(user, "Underserved User", "Gig worker, freelancer, trader, domestic/seasonal worker")
     Person(agent, "Field Agent", "Assists onboarding in low-trust communities (Phase 3)")
 
-    System(moneymate, "MoneyMate Platform", "AI financial confidence assistant: budgeting, saving, learning, scam protection")
+    System(moneymate, "MoneyWise Platform", "AI financial confidence assistant: budgeting, saving, learning, scam protection")
 
     System_Ext(mm, "Mobile Money / Banks", "M-Pesa, bank & payout APIs (Phase 2)")
     System_Ext(telco, "Telco / USSD-SMS Gateway", "Feature-phone channel & SMS delivery")
@@ -42,11 +42,11 @@ C4Context
 
 ```mermaid
 C4Container
-    title MoneyMate — Container Diagram
+    title MoneyWise — Container Diagram
 
     Person(user, "User")
 
-    System_Boundary(mm, "MoneyMate Platform") {
+    System_Boundary(mm, "MoneyWise Platform") {
         Container(mobile, "Mobile App", "Flutter (Android-first)", "Offline-first; on-device models; low-data; voice; i18n")
         Container(ussd, "USSD/SMS Service", "Node.js", "Feature-phone experience & SMS flows")
         Container(gw, "API Gateway / BFF", "Azure API Management + Spring Cloud Gateway", "AuthN/Z, rate-limit, routing, aggregation")

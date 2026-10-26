@@ -2,7 +2,7 @@
 
 Everything needed to win the room: a live demo script, the flow, judge talking points, and three timed pitches (3 / 5 / 10 min). The narrative hero is **Thandi** (gig driver) with cameos from **Grace** (feature-phone trader) and **Sipho** (USSD-only) to prove inclusion.
 
-> **One-liner:** *MoneyMate is the AI financial confidence assistant for the informal economy — it budgets irregular income, builds savings that stick, teaches money skills, and shields people from scams, in their language, even offline.*
+> **One-liner:** *MoneyWise is the AI financial confidence assistant for the informal economy — it budgets irregular income, builds savings that stick, teaches money skills, and shields people from scams, in their language, even offline.*
 
 ---
 
@@ -22,17 +22,17 @@ flowchart LR
 
 **[0:00] Hook.** "Meet Thandi. She drives for three apps. Yesterday she made R420 — but is that a good day or a bad day? She has no idea. 2 billion people live on income like this, and every finance app assumes a monthly salary." *(Show dashboard.)*
 
-**[0:40] Budget.** "MoneyMate says: *you can safely spend R120 today*. Tap 'why?' — and here's the magic: it explains itself. Income's 15% below her 8-week average, R600 of bills are due, she's on track for her car-repair goal. Plain language, her language — Zulu." *(Tap the explanation.)*
+**[0:40] Budget.** "MoneyWise says: *you can safely spend R120 today*. Tap 'why?' — and here's the magic: it explains itself. Income's 15% below her 8-week average, R600 of bills are due, she's on track for her car-repair goal. Plain language, her language — Zulu." *(Tap the explanation.)*
 
-**[1:30] Save.** "Today's a good day, so MoneyMate sweeps a small amount into her Car Repair jar — and skips it automatically on slow days. 4-week streak." *(Show jar fill + streak.)*
+**[1:30] Save.** "Today's a good day, so MoneyWise sweeps a small amount into her Car Repair jar — and skips it automatically on slow days. 4-week streak." *(Show jar fill + streak.)*
 
-**[2:10] Scam Shield — the showstopper.** "Then this lands." *(Paste: 'You won R5000! Click to verify your bank PIN.')* "MoneyMate flags it HIGH risk and tells her exactly why: it creates urgency, it asks for a PIN — banks never do — and the link is hidden. One tap to block, report, and warn her contacts." *(Show red-flag verdict.)*
+**[2:10] Scam Shield — the showstopper.** "Then this lands." *(Paste: 'You won R5000! Click to verify your bank PIN.')* "MoneyWise flags it HIGH risk and tells her exactly why: it creates urgency, it asks for a PIN — banks never do — and the link is hidden. One tap to block, report, and warn her contacts." *(Show red-flag verdict.)*
 
 **[2:50] Learn.** "Right after, a 2-minute audio lesson on spotting that exact scam. Learning in the moment it matters."
 
 **[3:20] Inclusion.** "Now watch this." *(Pick up a feature phone, dial `*134#`.)* "Grace, a market trader with no smartphone, does the same things over USSD. And it all works offline — no data needed. **That's** financial inclusion."
 
-**[3:50] Close.** "MoneyMate: money that makes sense, confidence that lasts."
+**[3:50] Close.** "MoneyWise: money that makes sense, confidence that lasts."
 
 ### Demo setup / fallback
 - Pre-seeded demo account (Thandi) with realistic income history.
@@ -73,9 +73,9 @@ flowchart LR
 ## 3-minute pitch
 "Two billion people earn irregular income — gig workers, traders, domestic and seasonal workers. Every finance app assumes a monthly salary, English, a smartphone, and data. They have none of those, and they're the most targeted by scams with the least to lose.
 
-MoneyMate is the AI financial confidence assistant built for them. It turns unpredictable income into a simple 'safe-to-spend today,' and it *explains itself* in the user's own language. It saves automatically on good days and backs off on bad ones. Its Scam Shield spots fraud and shows people exactly why something's dangerous. And it teaches money skills in 2-minute lessons, right when they're needed.
+MoneyWise is the AI financial confidence assistant built for them. It turns unpredictable income into a simple 'safe-to-spend today,' and it *explains itself* in the user's own language. It saves automatically on good days and backs off on bad ones. Its Scam Shield spots fraud and shows people exactly why something's dangerous. And it teaches money skills in 2-minute lessons, right when they're needed.
 
-Crucially, it works offline and on a basic feature phone over USSD — so it reaches the people smartphone-only fintech leaves behind. It's cloud-native on Azure, secure by design, and sustainable through freemium and partnerships — never by exploiting the users we serve. MoneyMate: money that makes sense, confidence that lasts."
+Crucially, it works offline and on a basic feature phone over USSD — so it reaches the people smartphone-only fintech leaves behind. It's cloud-native on Azure, secure by design, and sustainable through freemium and partnerships — never by exploiting the users we serve. MoneyWise: money that makes sense, confidence that lasts."
 
 ## 5-minute pitch
 Covers the 3-min pitch, plus:

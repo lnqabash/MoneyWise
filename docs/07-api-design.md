@@ -2,7 +2,7 @@
 
 RESTful HTTP/JSON over TLS 1.3, versioned at `/v1`. Resource-oriented, idempotent writes, cursor pagination, and a consistent error envelope. An OpenAPI 3.1 skeleton is included at the end. gRPC is used internally (service↔AI Engine); REST is the public/client contract.
 
-**Base URL:** `https://api.moneymate.app/v1`
+**Base URL:** `https://api.moneywise.app/v1`
 
 ## Conventions
 
@@ -288,8 +288,8 @@ Baseline/periodic adaptive quiz; voice-answerable (`answers` accept text or tran
 
 ```yaml
 openapi: 3.1.0
-info: { title: MoneyMate API, version: "1.0.0" }
-servers: [{ url: https://api.moneymate.app/v1 }]
+info: { title: MoneyWise API, version: "1.0.0" }
+servers: [{ url: https://api.moneywise.app/v1 }]
 security: [{ bearerAuth: [] }]
 components:
   securitySchemes:

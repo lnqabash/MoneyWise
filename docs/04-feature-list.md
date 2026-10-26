@@ -113,7 +113,7 @@ Conversational advisor that proactively flags opportunities/risks across the ful
 
 ```mermaid
 timeline
-    title MoneyMate Release Roadmap
+    title MoneyWise Release Roadmap
     section MVP (Phase 1) — Launch the core promise
         AI Budget Planner : Micro-Savings Engine : Goal Setting
         Emergency Fund : Scam Shield : Literacy Coach (core)

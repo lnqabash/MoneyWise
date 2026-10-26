@@ -1,6 +1,6 @@
 # 09 — Security Architecture
 
-Security is a product feature for MoneyMate — our users are high-value fraud targets with low margin for loss. The architecture follows **Zero Trust**, is designed to **OWASP ASVS Level 2** (L3 for the most sensitive flows), mitigates the **OWASP Top 10**, and aligns controls to **ISO/IEC 27001:2022** Annex A.
+Security is a product feature for MoneyWise — our users are high-value fraud targets with low margin for loss. The architecture follows **Zero Trust**, is designed to **OWASP ASVS Level 2** (L3 for the most sensitive flows), mitigates the **OWASP Top 10**, and aligns controls to **ISO/IEC 27001:2022** Annex A.
 
 ## Guiding principles
 - **Never trust, always verify** — authenticate and authorise every request, service-to-service included.

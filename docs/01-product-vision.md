@@ -6,9 +6,9 @@ To give every person with an irregular income the tools, knowledge, and protecti
 
 ## Vision
 
-A world where financial confidence is not a privilege of the formally employed. MoneyMate becomes the trusted financial companion in the pocket of the informal economy — proactively guiding people through the ups and downs of irregular income, building savings habits that stick, teaching money skills in the moment they're needed, and standing between users and the scams that prey on the financially vulnerable.
+A world where financial confidence is not a privilege of the formally employed. MoneyWise becomes the trusted financial companion in the pocket of the informal economy — proactively guiding people through the ups and downs of irregular income, building savings habits that stick, teaching money skills in the moment they're needed, and standing between users and the scams that prey on the financially vulnerable.
 
-By 2030, MoneyMate aims to serve 20 million underserved users across emerging markets, measurably lifting their savings rates, financial literacy, and resilience to financial shocks.
+By 2030, MoneyWise aims to serve 20 million underserved users across emerging markets, measurably lifting their savings rates, financial literacy, and resilience to financial shocks.
 
 ## Problem Statement
 
@@ -23,7 +23,7 @@ People in the informal and gig economy face a compounding set of challenges that
 - **Language barriers** — most financial apps are English-only.
 - **Expensive mobile data & low connectivity** — heavy, always-online apps are unusable or unaffordable.
 
-Existing banking and fintech apps assume a stable salary, financial fluency, a good data connection, and English. MoneyMate assumes none of these.
+Existing banking and fintech apps assume a stable salary, financial fluency, a good data connection, and English. MoneyWise assumes none of these.
 
 ## Strategic pillars
 

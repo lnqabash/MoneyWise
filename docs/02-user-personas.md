@@ -27,7 +27,7 @@ Five personas spanning the target segments. Each represents a cluster of real be
 - Build a cushion for car repairs (her #1 income risk).
 - Stop losing money to small invisible leaks.
 
-**How MoneyMate helps:** Daily-income budgeting, "safe-to-spend today" number, auto round-up micro-savings into a Car Repair goal, Scam Shield on WhatsApp links, offline mode for month-end.
+**How MoneyWise helps:** Daily-income budgeting, "safe-to-spend today" number, auto round-up micro-savings into a Car Repair goal, Scam Shield on WhatsApp links, offline mode for month-end.
 
 ---
 
@@ -54,7 +54,7 @@ Five personas spanning the target segments. Each represents a cluster of real be
 - Automatically provision for tax and quiet periods.
 - Grow an emergency fund and start investing.
 
-**How MoneyMate helps:** Lump-sum smoothing (AI allocates a windfall across weeks/goals), tax & emergency-fund envelopes, explainable AI showing the reasoning, spending predictions for lean months.
+**How MoneyWise helps:** Lump-sum smoothing (AI allocates a windfall across weeks/goals), tax & emergency-fund envelopes, explainable AI showing the reasoning, spending predictions for lean months.
 
 ---
 
@@ -81,7 +81,7 @@ Five personas spanning the target segments. Each represents a cluster of real be
 - Save for stock during the slow season.
 - Understand money without having to read a lot.
 
-**How MoneyMate helps:** Voice Assistant in Swahili, picture/voice expense capture, business-vs-personal tagging, offline-first with SMS/USSD, Scam Shield for savings-group fraud, audio literacy lessons.
+**How MoneyWise helps:** Voice Assistant in Swahili, picture/voice expense capture, business-vs-personal tagging, offline-first with SMS/USSD, Scam Shield for savings-group fraud, audio literacy lessons.
 
 ---
 
@@ -108,7 +108,7 @@ Five personas spanning the target segments. Each represents a cluster of real be
 - Simple, reassuring guidance she can trust.
 - Avoid scams that target older, less tech-savvy users.
 
-**How MoneyMate helps:** Large-type accessible UI, voice-first flows in Portuguese/local language, tiny automatic micro-saves, School Fees goal with gentle reminders, strong reassurance & undo, Scam Shield.
+**How MoneyWise helps:** Large-type accessible UI, voice-first flows in Portuguese/local language, tiny automatic micro-saves, School Fees goal with gentle reminders, strong reassurance & undo, Scam Shield.
 
 ---
 
@@ -135,7 +135,7 @@ Five personas spanning the target segments. Each represents a cluster of real be
 - Build any emergency buffer at all.
 - Access everything without a smartphone or data.
 
-**How MoneyMate helps:** Full USSD/SMS experience, seasonal-income smoothing plan, automated off-season drawdown schedule, Emergency Fund Tracking, SMS-based literacy tips and scam warnings.
+**How MoneyWise helps:** Full USSD/SMS experience, seasonal-income smoothing plan, automated off-season drawdown schedule, Emergency Fund Tracking, SMS-based literacy tips and scam warnings.
 
 ---
 

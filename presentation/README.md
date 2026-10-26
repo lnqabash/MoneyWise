@@ -1,4 +1,4 @@
-# MoneyMate — Investor Pitch Deck
+# MoneyWise — Investor Pitch Deck
 
 A self-contained, 20-slide HTML presentation. No build step, no internet, no dependencies — open and present.
 
@@ -33,4 +33,4 @@ Every slide has executive-level speaker notes plus source/citation references. P
 Market sizes (TAM/SAM/SOM) and the revenue/cost numbers are **illustrative models for the competition**, grounded where possible in public sources (World Bank Findex, GSMA). The speaker notes flag the assumptions — be ready to discuss them if asked.
 
 ## 20 slides
-1. Title · 2. Problem · 3. Why it matters · 4. Personas · 5. Root-cause (fishbone) · 6. Market opportunity · 7. Introducing MoneyMate · 8. How it works · 9. Core features · 10. AI differentiation · 11. Security &amp; SSDLC · 12. Architecture · 13. Business model · 14. Revenue · 15. Costs · 16. Impact &amp; KPIs · 17. Roadmap · 18. Competitive advantage · 19. Future vision · 20. Closing.
+1. Title · 2. Problem · 3. Why it matters · 4. Personas · 5. Root-cause (fishbone) · 6. Market opportunity · 7. Introducing MoneyWise · 8. How it works · 9. Core features · 10. AI differentiation · 11. Security &amp; SSDLC · 12. Architecture · 13. Business model · 14. Revenue · 15. Costs · 16. Impact &amp; KPIs · 17. Roadmap · 18. Competitive advantage · 19. Future vision · 20. Closing.
