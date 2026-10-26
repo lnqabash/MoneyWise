@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MoneyMate — Investor Pitch Deck</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<div class="topbar"><div class="fill" id="progress"></div></div>
+<div class="slide-num" id="slideNum">1 / 20</div>
+
+<main class="deck" id="deck" aria-live="polite">
+
+  <!-- 1. TITLE -->
+  <section class="slide title-slide active" aria-label="Title">
+    <div class="title-logo">M</div>
+    <div class="kicker">AI Financial Confidence Assistant</div>
+    <h1>Money<span class="grad-text">Mate</span></h1>
+    <p class="title-tag">"Financial Confidence for Everyone"</p>
+    <div class="title-meta">
+      <div><span>Team</span><strong>Team MoneyMate</strong></div>
+      <div><span>Challenge</span><strong>FinTech Innovation Challenge</strong></div>
+      <div><span>Theme</span><strong>Financial Inclusion &amp; Money Confidence</strong></div>
+    </div>
+    <template class="notes-data">
+      <h4>Speaker notes</h4>
+      <p>Open with energy. "Imagine earning a different amount every single day, in a language the app doesn't speak, with scammers targeting you — and no bank willing to help. That's the reality for over a billion people. We built MoneyMate for them."</p>
+      <p>State the tagline and move quickly to the problem — don't dwell on the title.</p>
+      <div class="src">Positioning: financial inclusion + money confidence for the underserved.</div>
+    </template>
+  </section>
+
+  <!-- 2. PROBLEM -->
+  <section class="slide" aria-label="The problem">
+    <div class="kicker">The Problem</div>
+    <h2>A billion people are locked out of financial confidence</h2>
+    <div class="slide-body">
+      <div class="stat-grid">
+        <div class="stat b"><div class="num grad-text">1.4B</div><div class="lbl">adults worldwide remain unbanked</div></div>
+        <div class="stat t"><div class="num grad-text">60%+</div><div class="lbl">of the workforce in emerging markets earns irregular income</div></div>
+        <div class="stat t"><div class="num grad-text">Low</div><div class="lbl">financial literacy limits effective money management</div></div>
+        <div class="stat b"><div class="num grad-text">↑ Rising</div><div class="lbl">scam &amp; fraud exposure among the underserved</div></div>
+      </div>
+    </div>
+    <template class="notes-data">
+      <h4>Speaker notes</h4>
+      <p>Anchor the scale: ~1.4 billion adults are unbanked. Stress that this isn't only a developing-world issue — gig and informal work is growing everywhere, and those workers earn unpredictably.</p>
+      <p>Make it concrete: traditional monthly-salary budgeting tools simply don't work for someone paid in daily, lumpy amounts. Add low literacy and rising scams, and these users are both underserved and over-targeted.</p>
+      <div class="src">Sources: World Bank Global Findex 2021 (~1.4B unbanked adults); ILO estimates on informal employment (~60% of global workforce). Figures rounded for presentation.</div>
+    </template>
+  </section>
+
+  <!-- 3. WHY THIS MATTERS -->
+  <section class="slide" aria-label="Why this matters">
+    <div class="kicker">Why It Matters</div>
+    <h2>The daily cost of financial exclusion</h2>
+    <p class="sub">One missed step cascades into the next — a cycle that's hard to escape without the right tools.</p>
+    <div class="slide-body">
+      <div class="journey">
+        <div class="step"><div class="emoji">📉</div><h4>Poor budgeting</h4><p>Income swings make planning impossible</p></div>
+        <div class="arrow">→</div>
+        <div class="step"><div class="emoji">🏦</div><h4>No emergency savings</h4><p>No buffer for a single shock</p></div>
+        <div class="arrow">→</div>
+        <div class="step"><div class="emoji">🔁</div><h4>Debt cycles</h4><p>Expensive borrowing to cover gaps</p></div>
+        <div class="arrow">→</div>
+        <div class="step"><div class="emoji">⚠️</div><h4>Scam vulnerability</h4><p>Targeted, with little margin to lose</p></div>
+        <div class="arrow">→</div>
+        <div class="step"><div class="emoji">😟</div><h4>Low confidence</h4><p>Disengagement from formal finance</p></div>
+      </div>
+    </div>
+    <template class="notes-data">
+      <h4>Speaker notes</h4>
+      <p>Walk the chain left to right. Emphasise it's a <em>cascade</em>: without a budget there's no saving; without savings one emergency triggers debt; debt and desperation increase scam exposure; the result is lost confidence and withdrawal from the formal system.</p>
+      <p>Land the point: MoneyMate intervenes at every link in this chain.</p>
+      <div class="src">Framing based on behavioural-finance literature on low-income financial stress and shock vulnerability.</div>
+    </template>
+  </section>
+
+  <!-- 4. PERSONAS -->
+  <section class="slide" aria-label="User personas">
+    <div class="kicker">Who We Serve</div>
+    <h2>Real people, irregular incomes</h2>
+    <div class="slide-body">
+      <div class="cols cols-3">
+        <div class="persona">
+          <div class="avatar">🚗</div>
+          <h3>Thandi</h3><span class="role">Ride-hailing driver</span>
+          <dl>
+            <dt>Income</dt><dd>Daily, highly variable (good/bad days)</dd>
+            <dt>Challenges</dt><dd>Fuel &amp; data eat earnings; scam links; data runs out</dd>
+            <dt>Goals</dt><dd>Smooth the ups &amp; downs; save for car repairs</dd>
+          </dl>
+        </div>
+        <div class="persona">
+          <div class="avatar">🧺</div>
+          <h3>Grace</h3><span class="role">Informal trader</span>
+          <dl>
+            <dt>Income</dt><dd>Daily cash; seasonal; business &amp; home mixed</dd>
+            <dt>Challenges</dt><dd>Low literacy; English-only apps; group-savings scams</dd>
+            <dt>Goals</dt><dd>Separate business cash; save for slow season</dd>
+          </dl>
+        </div>
+        <div class="persona">
+          <div class="avatar">💻</div>
+          <h3>Carlos</h3><span class="role">Freelancer</span>
+          <dl>
+            <dt>Income</dt><dd>Project lump sums; weeks with nothing</dd>
+            <dt>Challenges</dt><dd>Feast-or-famine; no tax/lean-month buffer</dd>
+            <dt>Goals</dt><dd>Turn lumpy income into a steady "salary"</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+    <template class="notes-data">
+      <h4>Speaker notes</h4>
+      <p>Introduce three archetypes spanning the spectrum: a tech-comfortable gig driver, a low-literacy cash trader, and a high-earning but volatile freelancer. Different tech comfort, same core problem — irregular income.</p>
+      <p>Note these aren't hypothetical personas bolted on — the product's demo account (Thandi) is built around this exact user.</p>
+      <div class="src">Personas derived from target segments: gig, informal trade, freelance, seasonal, domestic, rural.</div>
+    </template>
+  </section>
+
+  <!-- 5. ROOT CAUSE (FISHBONE) -->
+  <section class="slide" aria-label="Root cause analysis">
+    <div class="kicker">Root Cause Analysis</div>
+    <h2>Why exclusion persists</h2>
+    <div class="slide-body">
+      <div class="fishbone">
+        <div class="spine"></div>
+        <div class="fish-head">Low financial confidence &amp; exclusion</div>
+        <div class="bone tl"><h4>💰 Financial</h4><ul><li>Irregular income</li><li>No savings buffer</li><li>Costly credit</li></ul></div>
+        <div class="bone tc"><h4>📚 Educational</h4><ul><li>Low literacy</li><li>Jargon-heavy advice</li><li>No just-in-time learning</li></ul></div>
+        <div class="bone tr"><h4>💻 Technological</h4><ul><li>Expensive data</li><li>Low connectivity</li><li>Smartphone-only apps</li></ul></div>
+        <div class="bone bl"><h4>👥 Social</h4><ul><li>Language barriers</li><li>Distrust of banks</li><li>Scam targeting</li></ul></div>
+        <div class="bone bc"><h4>🏦 Structural</h4><ul><li>KYC barriers</li><li>No credit record</li><li>Minimum balances</li></ul></div>
+        <div class="bone br"><h4>🧠 Behavioural</h4><ul><li>Financial stress</li><li>Short planning horizon</li><li>Shame/avoidance</li></ul></div>
+      </div>
+    </div>
+    <template class="notes-data">
+      <h4>Speaker notes</h4>
+      <p>Use the fishbone to show this is a <em>systemic</em>, multi-cause problem — not solvable by a single feature. Financial, educational, technological, social, structural and behavioural factors all feed the same effect.</p>
+      <p>Transition: "A real solution has to address several of these bones at once — which is exactly how we designed MoneyMate."</p>
+      <div class="src">Ishikawa (fishbone) cause-and-effect analysis of financial exclusion drivers.</div>
+    </template>
+  </section>
+
+  <!-- 6. MARKET OPPORTUNITY -->
+  <section class="slide" aria-label="Market opportunity">
+    <div class="kicker">Market Opportunity</div>
+    <h2>A large, fast-growing, underserved market</h2>
+    <div class="slide-body">
+      <div class="cols cols-2 center">
+        <div class="funnel">
+          <div class="layer l1">TAM — ~1.4B unbanked adults<small>Global financial-inclusion opportunity</small></div>
+          <div class="layer l2">SAM — ~350M in target emerging markets<small>Mobile-reachable, irregular-income workers</small></div>
+          <div class="layer l3">SOM — ~5M in 3 yrs<small>Beachhead markets &amp; segments</small></div>
+        </div>
+        <div>
+          <ul class="ticks">
+            <li>Financial-inclusion &amp; digital-banking spend growing double digits in emerging markets</li>
+            <li>Mobile-money accounts surpassing traditional banking in several regions</li>
+            <li>Smartphone + feature-phone reach makes the segment addressable today</li>
+            <li>Regulators actively incentivising inclusion solutions</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <template class="notes-data">
+      <h4>Speaker notes</h4>
+      <p>Explain the funnel: Total market is the global unbanked population; Serviceable market narrows to mobile-reachable, irregular-income workers in our target regions; Obtainable share is a realistic 3-year beachhead.</p>
+      <p>Be transparent that these are directional estimates for a competition, not audited figures — investors respect honesty about assumptions.</p>
+      <div class="src">Directional estimates. Grounding: World Bank Findex unbanked population; GSMA mobile-money growth trends. Treat TAM/SAM/SOM as illustrative.</div>
+    </template>
+  </section>
+
+  <!-- 7. INTRODUCING MONEYMATE -->
+  <section class="slide" aria-label="Introducing MoneyMate">
+    <div class="kicker">The Solution</div>
+    <h2>Introducing <span class="grad-text">MoneyMate</span></h2>
+    <div class="slide-body">
+      <div class="cols cols-3">
+        <div class="card"><div class="ico">🎯</div><h3>Mission</h3><p>Empower financially underserved individuals to manage money with confidence — whatever their income looks like.</p></div>
+        <div class="card"><div class="ico">🌍</div><h3>Vision</h3><p>Become Africa's leading AI financial confidence platform, then scale across emerging markets.</p></div>
+        <div class="card"><div class="ico">💡</div><h3>Value proposition</h3><p><strong>"Financial confidence regardless of income stability."</strong> Budget, save, learn, and stay safe — in your language, even offline.</p></div>
+      </div>
+    </div>
+    <template class="notes-data">
+      <h4>Speaker notes</h4>
+      <p>This is the pivot from problem to solution. Deliver the value proposition as a single memorable line: "Financial confidence regardless of income stability."</p>
+      <p>Emphasise the four verbs we'll prove next: budget, save, learn, protect.</p>
+      <div class="src">Mission/vision/value proposition from the product vision.</div>
+    </template>
+  </section>
+
+  <!-- 8. HOW IT WORKS -->
+  <section class="slide" aria-label="How MoneyMate works">
+    <div class="kicker">How It Works</div>
+    <h2>From income to financial growth</h2>
+    <div class="slide-body">
+      <div class="flow">
+        <div class="node"><div class="emoji">💵</div><h4>Income received</h4></div>
+        <div class="arrow">→</div>
+        <div class="node"><div class="emoji">📊</div><h4>Smart budget</h4></div>
+        <div class="arrow">→</div>
+        <div class="node"><div class="emoji">🎯</div><h4>Auto save</h4></div>
+        <div class="arrow">→</div>
+        <div class="node"><div class="emoji">📚</div><h4>Coaching</h4></div>
+        <div class="arrow">→</div>
+        <div class="node"><div class="emoji">🛡️</div><h4>Scam protection</h4></div>
+        <div class="arrow">→</div>
+        <div class="node"><div class="emoji">📈</div><h4>Financial growth</h4></div>
+      </div>
+    </div>
+    <template class="notes-data">
+      <h4>Speaker notes</h4>
+      <p>Walk the loop. Every time income arrives, MoneyMate re-forecasts a "safe-to-spend" number, sweeps a little into savings (only when affordable), teaches a relevant lesson, and shields the user from scams. Over time this compounds into real financial growth.</p>
+      <p>Key insight: it's event-driven around <em>income</em>, not the calendar month — that's what makes it work for irregular earners.</p>
+      <div class="src">End-to-end flow implemented in the working prototype (income → re-forecast → auto-save).</div>
+    </template>
+  </section>
+
+  <!-- 9. CORE FEATURES -->
+  <section class="slide" aria-label="Core features">
+    <div class="kicker">Core Features</div>
+    <h2>One app, eight capabilities</h2>
+    <div class="slide-body">
+      <div class="tiles">
+        <div class="tile"><div class="ico">📊</div><h4>AI Smart Budget</h4><p>Dynamic "safe-to-spend" for irregular income</p></div>
+        <div class="tile"><div class="ico">🎯</div><h4>Micro-Savings</h4><p>Affordability-aware auto-save</p></div>
+        <div class="tile"><div class="ico">📚</div><h4>AI Financial Coach</h4><p>Bite-size, contextual lessons</p></div>
+        <div class="tile"><div class="ico">🛡️</div><h4>Scam Shield</h4><p>Explainable fraud detection</p></div>
+        <div class="tile"><div class="ico">🎤</div><h4>Voice Assistant</h4><p>Hands-free, for low literacy</p></div>
+        <div class="tile"><div class="ico">🌍</div><h4>Multilingual</h4><p>Local languages, not just English</p></div>
+        <div class="tile"><div class="ico">📶</div><h4>Low-Data &amp; Offline</h4><p>Works on cheap phones &amp; weak signal</p></div>
+        <div class="tile"><div class="ico">⭐</div><h4>Financial Health Score</h4><p>A credit-score alternative</p></div>
+      </div>
+    </div>
+    <template class="notes-data">
+      <h4>Speaker notes</h4>
+      <p>Don't read every tile — cluster them: "Four help you manage money (budget, save, coach, score); two protect and empower (Scam Shield, voice); two make it reachable for everyone (multilingual, low-data/offline)."</p>
+      <p>Call out that the prototype already implements budget, savings, coach, Scam Shield, voice, and the health score — live.</p>
+      <div class="src">Feature set from the MVP; most are demonstrable in the working prototype.</div>
+    </template>
+  </section>
+
+  <!-- 10. AI DIFFERENTIATION -->
+  <section class="slide" aria-label="AI differentiation">
+    <div class="kicker">AI Differentiation</div>
+    <h2>The Financial Health Score</h2>
+    <p class="sub">An inclusion-friendly alternative to a credit score — it rewards healthy behaviour, not debt history, and explains itself.</p>
+    <div class="slide-body">
+      <div class="cols cols-2 center">
+        <div style="display:grid;place-items:center">
+          <div class="ring" style="--p:93"><span class="v grad-text">93</span></div>
+          <p class="pill teal" style="margin-top:14px">Band: Thriving</p>
+        </div>
+        <div>
+          <div class="pillar"><div class="top"><span>Savings consistency</span><span>91</span></div><div class="bar"><div class="fill" style="width:91%"></div></div></div>
+          <div class="pillar"><div class="top"><span>Financial resilience</span><span>100</span></div><div class="bar"><div class="fill" style="width:100%"></div></div></div>
+          <div class="pillar"><div class="top"><span>Budget adherence</span><span>100</span></div><div class="bar"><div class="fill" style="width:100%"></div></div></div>
+          <div class="pillar"><div class="top"><span>Income stability</span><span>79</span></div><div class="bar"><div class="fill" style="width:79%"></div></div></div>
+        </div>
+      </div>
+    </div>
+    <template class="notes-data">
+      <h4>Speaker notes</h4>
+      <p>This is our core AI differentiator. Traditional credit scores exclude people with no formal history. Ours is built from in-app behaviour across four explainable pillars — so even an unbanked user can build, see, and improve a financial standing.</p>
+      <p>Emphasise explainability: every pillar tells the user exactly how to raise it. This exact score is live in our prototype (these are real values from the demo account).</p>
+      <div class="src">Financial Health Score engine (4 weighted pillars) implemented and returning these values in the prototype.</div>
+    </template>
+  </section>
+
+  <!-- 11. SECURITY & SSDLC -->
+  <section class="slide" aria-label="Security and SSDLC">
+    <div class="kicker">Security by Design</div>
+    <h2>Secure SDLC with STRIDE threat modelling</h2>
+    <div class="slide-body">
+      <div class="lifecycle">
+        <div class="phase"><div class="n">1</div><h4>Security requirements</h4></div>
+        <div class="arrow" style="color:var(--blue)">→</div>
+        <div class="phase"><div class="n">2</div><h4>Threat modelling</h4></div>
+        <div class="arrow" style="color:var(--blue)">→</div>
+        <div class="phase"><div class="n">3</div><h4>Secure development</h4></div>
+        <div class="arrow" style="color:var(--blue)">→</div>
+        <div class="phase"><div class="n">4</div><h4>Security testing</h4></div>
+        <div class="arrow" style="color:var(--blue)">→</div>
+        <div class="phase"><div class="n">5</div><h4>Secure integration</h4></div>
+      </div>
+      <div class="stride">
+        <div>S — Spoofing</div><div>T — Tampering</div><div>R — Repudiation</div>
+        <div>I — Info disclosure</div><div>D — Denial of service</div><div>E — Elevation</div>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:18px">
+        <span class="pill">MFA</span><span class="pill teal">AES-256 encryption</span>
+        <span class="pill">OAuth2 / OIDC</span><span class="pill teal">Azure Key Vault</span>
+        <span class="pill">Azure Sentinel (SIEM)</span><span class="pill teal">Immutable audit trail</span>
+      </div>
+    </div>
+    <template class="notes-data">
+      <h4>Speaker notes</h4>
+      <p>For a fintech, security is table stakes — so we made it a design principle, not an afterthought. Security runs through every SDLC phase, with STRIDE threat modelling applied per service.</p>
+      <p>List the concrete controls quickly: MFA, AES-256 at rest, OAuth2/OIDC, secrets in Key Vault, SIEM via Sentinel, and an immutable audit trail. Mention the prototype already uses JWT auth with refresh-token rotation and a hashed, append-only ledger.</p>
+      <div class="src">Aligned to OWASP ASVS, OWASP Top 10, Zero Trust, and ISO 27001; STRIDE threat models in the SSDLC documentation.</div>
+    </template>
+  </section>
+
+  <!-- 12. SYSTEM ARCHITECTURE -->
+  <section class="slide" aria-label="System architecture">
+    <div class="kicker">System Architecture</div>
+    <h2>Cloud-native &amp; microservices on Azure</h2>
+    <div class="slide-body">
+      <div class="arch">
+        <div class="box">📱 Mobile App &nbsp;·&nbsp; USSD / SMS &nbsp;·&nbsp; Web</div>
+        <div class="conn">↓</div>
+        <div class="box gw">🔀 API Gateway (auth · routing · rate-limit)</div>
+        <div class="conn">↓</div>
+        <div class="layer">
+          <div class="box">📊 Budget Service</div>
+          <div class="box">🎯 Savings Service</div>
+          <div class="box">🛡️ Scam AI Service</div>
+          <div class="box">📚 Education Service</div>
+        </div>
+        <div class="conn">↓</div>
+        <div class="box data">🗄️ Azure SQL &nbsp;·&nbsp; Ledger</div>
+        <div class="azure">
+          <span>Azure OpenAI</span><span>Azure Key Vault</span><span>Azure Sentinel</span>
+          <span>Azure AI Vision</span><span>Service Bus</span><span>AKS / App Service</span>
+        </div>
+      </div>
+    </div>
+    <template class="notes-data">
+      <h4>Speaker notes</h4>
+      <p>Explain the layers top-down: multiple client channels (including feature-phone USSD) → a secure API gateway → independently-scalable microservices → a persistent data tier with an auditable ledger.</p>
+      <p>Highlight the Azure building blocks: OpenAI for coaching, Key Vault for secrets, Sentinel for monitoring. Note we deliberately start as a modular monolith and split to microservices as we scale — pragmatic, not over-engineered.</p>
+      <div class="src">C4 architecture in the design docs; prototype runs the services as a modular monolith with a clean path to AKS microservices.</div>
+    </template>
+  </section>
+
+  <!-- 13. BUSINESS MODEL (LEAN CANVAS) -->
+  <section class="slide" aria-label="Business model">
+    <div class="kicker">Business Model</div>
+    <h2>Lean Canvas</h2>
+    <div class="slide-body">
+      <div class="canvas">
+        <div class="block"><h4>Problem</h4><ul><li>Irregular income breaks budgeting</li><li>Low literacy</li><li>Scam exposure</li></ul></div>
+        <div class="block"><h4>Solution</h4><ul><li>AI budget &amp; micro-savings</li><li>Scam Shield</li><li>Coach + health score</li></ul></div>
+        <div class="block" style="background:linear-gradient(145deg,#E8F0FF,#E2F7F7)"><h4>Value proposition</h4><ul><li><strong>Financial confidence regardless of income stability</strong></li><li>In your language, offline</li></ul></div>
+        <div class="block"><h4>Customers</h4><ul><li>Gig &amp; informal workers</li><li>Low-income households</li><li>B2B: banks, MFIs, platforms</li></ul></div>
+        <div class="block"><h4>Revenue</h4><ul><li>Premium subscription</li><li>Partnerships &amp; licensing</li><li>Referral revenue</li></ul></div>
+      </div>
+    </div>
+    <template class="notes-data">
+      <h4>Speaker notes</h4>
+      <p>Summarise the canvas crisply. Key message: this is a <em>sustainable</em> model — we don't profit by extracting from vulnerable users. Core safety features stay free; revenue comes from premium users, B2B2C partners, and ethical referrals.</p>
+      <div class="src">Lean Canvas from the business-model documentation.</div>
+    </template>
+  </section>
+
+  <!-- 14. REVENUE STREAMS -->
+  <section class="slide" aria-label="Revenue streams">
+    <div class="kicker">Revenue Streams</div>
+    <h2>Diversified, recurring revenue</h2>
+    <div class="slide-body">
+      <div class="bars" id="revBars">
+        <div class="b"><div class="col" style="height:40%">R39/user</div><div class="cap">Premium<br/>subscription</div></div>
+        <div class="b"><div class="col" style="height:30%">R30k/mo</div><div class="cap">Bank<br/>partnerships</div></div>
+        <div class="b"><div class="col" style="height:55%">R150k + R15k/mo</div><div class="cap">White-label<br/>licensing</div></div>
+        <div class="b"><div class="col" style="height:25%">R50–150</div><div class="cap">Referral<br/>revenue</div></div>
+      </div>
+      <div class="totals">
+        <div class="t"><div class="n grad-text">R337,500</div><div class="l">Estimated total revenue / month</div></div>
+      </div>
+    </div>
+    <template class="notes-data">
+      <h4>Speaker notes</h4>
+      <p>Four streams, balanced between B2C (premium subscriptions at R39/user/month) and B2B (partnerships and white-label licensing — the higher-margin, stickier revenue). Referral revenue adds a growth-aligned stream.</p>
+      <p>Call the R337,500/month an illustrative target at modelled adoption — be ready to state the assumptions (user count, partner count) if asked.</p>
+      <div class="src">Illustrative revenue model for the competition. Premium R39/user/mo · Bank partnerships R30k/mo · White-label R150k setup + R15k/mo · Referrals R50–150. Total figure depends on assumed volumes.</div>
+    </template>
+  </section>
+
+  <!-- 15. COST STRUCTURE -->
+  <section class="slide" aria-label="Cost structure">
+    <div class="kicker">Cost Structure</div>
+    <h2>Lean, cloud-based operating costs</h2>
+    <div class="slide-body">
+      <div class="bars">
+        <div class="b cost"><div class="col" style="height:55%">R15k</div><div class="cap">Development</div></div>
+        <div class="b cost"><div class="col" style="height:38%">R10k</div><div class="cap">Azure hosting</div></div>
+        <div class="b cost"><div class="col" style="height:38%">R10k</div><div class="cap">Marketing</div></div>
+        <div class="b cost"><div class="col" style="height:30%">R8k</div><div class="cap">AI services</div></div>
+        <div class="b cost"><div class="col" style="height:28%">R7.5k</div><div class="cap">Support</div></div>
+        <div class="b cost"><div class="col" style="height:19%">R5k</div><div class="cap">Security</div></div>
+        <div class="b cost"><div class="col" style="height:12%">R3k</div><div class="cap">Database</div></div>
+      </div>
+      <div class="totals">
+        <div class="t"><div class="n">R61,000</div><div class="l">Total cost / month</div></div>
+        <div class="t profit"><div class="n">R276,500</div><div class="l">Projected monthly margin</div></div>
+      </div>
+    </div>
+    <template class="notes-data">
+      <h4>Speaker notes</h4>
+      <p>Costs are deliberately lean thanks to a cloud-native, serverless-leaning design. Against the revenue target, that leaves a healthy modelled margin (~R276.5k/month) — evidence of a viable unit economics story.</p>
+      <p>Honesty note: these are projected operating costs at modelled scale, excluding one-off capital and team salaries beyond the dev line. Flag that if pressed.</p>
+      <div class="src">Illustrative cost model: Azure R10k · AI R8k · DB R3k · Security R5k · Marketing R10k · Support R7.5k · Dev R15k = R61k/mo.</div>
+    </template>
+  </section>
+
+  <!-- 16. IMPACT & KPIs -->
+  <section class="slide" aria-label="Impact and KPIs">
+    <div class="kicker">Impact &amp; KPIs</div>
+    <h2>Measuring what matters</h2>
+    <div class="slide-body">
+      <div class="kpis">
+        <div class="kpi"><div class="ico">👥</div><div class="target">500k</div><div class="lbl">Monthly Active Users (Yr 1)</div></div>
+        <div class="kpi"><div class="ico">💰</div><div class="target">+25%</div><div class="lbl">Avg. savings growth</div></div>
+        <div class="kpi"><div class="ico">🛡️</div><div class="target">≥90%</div><div class="lbl">Scam-detection precision</div></div>
+        <div class="kpi"><div class="ico">📚</div><div class="target">+30%</div><div class="lbl">Financial-literacy improvement</div></div>
+        <div class="kpi"><div class="ico">⭐</div><div class="target">≥4%</div><div class="lbl">Premium conversion</div></div>
+        <div class="kpi"><div class="ico">💪</div><div class="target">+15 pts</div><div class="lbl">Financial Confidence Score uplift</div></div>
+      </div>
+    </div>
+    <template class="notes-data">
+      <h4>Speaker notes</h4>
+      <p>Pair commercial KPIs (MAU, premium conversion) with impact KPIs (savings growth, scams prevented, literacy, confidence uplift). The North Star is the Financial Confidence Score uplift — we win when users are measurably better off.</p>
+      <div class="src">Year-1 targets from the product-vision success metrics.</div>
+    </template>
+  </section>
+
+  <!-- 17. ROADMAP -->
+  <section class="slide" aria-label="Implementation roadmap">
+    <div class="kicker">Roadmap</div>
+    <h2>From MVP to scale</h2>
+    <div class="slide-body">
+      <div class="roadmap">
+        <div class="rphase">
+          <div class="dot"></div><h3>Phase 1 — MVP</h3><div class="when">0–3 months</div>
+          <ul><li>Budget, savings, Scam Shield, health score</li><li>Voice &amp; web prototype (built)</li><li>Core security &amp; ledger</li></ul>
+        </div>
+        <div class="rphase">
+          <div class="dot"></div><h3>Phase 2 — Pilot</h3><div class="when">3–6 months</div>
+          <ul><li>Live SMS &amp; mobile-money connectors</li><li>Savings Circles &amp; multilingual</li><li>Field pilot with a partner</li></ul>
+        </div>
+        <div class="rphase">
+          <div class="dot"></div><h3>Phase 3 — Scale</h3><div class="when">6–12 months</div>
+          <ul><li>Azure cloud deployment &amp; AKS</li><li>Credit assessment &amp; lending</li><li>Multi-market expansion</li></ul>
+        </div>
+      </div>
+    </div>
+    <template class="notes-data">
+      <h4>Speaker notes</h4>
+      <p>Credibility point: Phase 1 isn't a promise — much of it is already <em>built</em> (working budget, savings, Scam Shield, health score, Circles logic, web prototype). Pilot adds real external connectors; Scale moves to full cloud and new financial products.</p>
+      <div class="src">Roadmap reflects actual prototype progress plus planned phases.</div>
+    </template>
+  </section>
+
+  <!-- 18. COMPETITIVE ADVANTAGE -->
+  <section class="slide" aria-label="Competitive advantage">
+    <div class="kicker">Competitive Advantage</div>
+    <h2>Built for who the others ignore</h2>
+    <div class="slide-body">
+      <table class="matrix">
+        <thead><tr><th>Capability</th><th>Traditional banks</th><th>Budgeting apps</th><th>Mobile wallets</th><th class="mm">MoneyMate</th></tr></thead>
+        <tbody>
+          <tr><td>Irregular-income focus</td><td class="no">✕</td><td class="no">✕</td><td class="no">✕</td><td class="mm yes">✓</td></tr>
+          <tr><td>Explainable AI guidance</td><td class="no">✕</td><td class="no">✕</td><td class="no">✕</td><td class="mm yes">✓</td></tr>
+          <tr><td>Scam Shield</td><td class="no">✕</td><td class="no">✕</td><td class="no">✕</td><td class="mm yes">✓</td></tr>
+          <tr><td>Multilingual &amp; voice</td><td class="no">✕</td><td class="no">✕</td><td class="no">✕</td><td class="mm yes">✓</td></tr>
+          <tr><td>Offline / feature-phone</td><td class="no">✕</td><td class="no">✕</td><td class="no">✕</td><td class="mm yes">✓</td></tr>
+          <tr><td>Alternative credit score</td><td class="no">✕</td><td class="no">✕</td><td class="no">✕</td><td class="mm yes">✓</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <template class="notes-data">
+      <h4>Speaker notes</h4>
+      <p>The matrix makes the gap obvious: banks assume a salary and a credit file; budgeting apps assume literacy and a smartphone; wallets move money but don't build confidence. MoneyMate is purpose-built for the excluded — that focus is our moat.</p>
+      <div class="src">Positioning comparison; differentiators drawn from the feature set.</div>
+    </template>
+  </section>
+
+  <!-- 19. FUTURE VISION -->
+  <section class="slide" aria-label="Future vision">
+    <div class="kicker">Future Vision</div>
+    <h2>A financial-inclusion ecosystem</h2>
+    <div class="slide-body">
+      <div class="eco">
+        <div class="eco-core">MoneyMate<br/>Platform</div>
+        <div class="eco-sat">
+          <div class="s"><div class="ico">👥</div><h4>Digital Stokvels</h4></div>
+          <div class="s"><div class="ico">☂️</div><h4>Embedded Insurance</h4></div>
+          <div class="s"><div class="ico">🧠</div><h4>AI Credit Assessment</h4></div>
+          <div class="s"><div class="ico">🤝</div><h4>Responsible Lending</h4></div>
+          <div class="s"><div class="ico">🌐</div><h4>Inclusion Ecosystem</h4></div>
+        </div>
+      </div>
+    </div>
+    <template class="notes-data">
+      <h4>Speaker notes</h4>
+      <p>Paint the expansion: once we hold trust and behavioural data (with consent), MoneyMate becomes a platform — digitised stokvels, embedded micro-insurance, AI-driven credit assessment, and responsible lending, all surfaced contextually.</p>
+      <p>Note the Digital Stokvels (Savings Circles) are already prototyped — this future is a credible extension, not a leap.</p>
+      <div class="src">Phase-3 ecosystem features from the roadmap and differentiators docs.</div>
+    </template>
+  </section>
+
+  <!-- 20. CLOSING -->
+  <section class="slide closing" aria-label="Closing">
+    <h1>Financial Confidence<br/>for Everyone</h1>
+    <p>MoneyMate helps underserved individuals budget smarter, save consistently, improve financial literacy, and protect themselves from scams — through AI-powered financial inclusion.</p>
+    <div class="cta">Join us in building a financially inclusive future</div>
+    <div class="thanks">THANK YOU</div>
+    <template class="notes-data">
+      <h4>Speaker notes</h4>
+      <p>Return to the opening promise and the person behind it. Close with conviction: "We can give a billion people the confidence to take control of their money. Join us." Then invite questions.</p>
+      <p>Call to action: name what you're asking for — pilot partners (a telco + a gig platform) and inclusion funding.</p>
+      <div class="src">Close mirrors the title to bookend the narrative.</div>
+    </template>
+  </section>
+
+</main>
+
+<!-- Speaker notes panel -->
+<aside class="notes" id="notes" aria-label="Speaker notes"></aside>
+
+<!-- Navigation -->
+<nav class="nav" aria-label="Slide navigation">
+  <button id="prev" title="Previous (←)" aria-label="Previous slide">‹</button>
+  <span class="count" id="count">1 / 20</span>
+  <button id="next" title="Next (→)" aria-label="Next slide">›</button>
+  <button class="nbtn" id="toggleNotes" title="Speaker notes (N)" aria-label="Toggle speaker notes">Notes</button>
+</nav>
+
+<script src="deck.js"></script>
+</body>
+</html>
