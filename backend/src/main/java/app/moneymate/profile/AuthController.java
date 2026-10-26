@@ -1,8 +1,11 @@
 package app.moneymate.profile;
 
+import app.moneymate.profile.dto.AuthDtos.LogoutBody;
 import app.moneymate.profile.dto.AuthDtos.OtpRequestBody;
 import app.moneymate.profile.dto.AuthDtos.OtpRequestResponse;
 import app.moneymate.profile.dto.AuthDtos.OtpVerifyBody;
+import app.moneymate.profile.dto.AuthDtos.RefreshBody;
+import app.moneymate.profile.dto.AuthDtos.RefreshResponse;
 import app.moneymate.profile.dto.AuthDtos.TokenResponse;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -33,6 +36,17 @@ public class AuthController {
     public ResponseEntity<TokenResponse> verifyOtp(@Valid @RequestBody OtpVerifyBody body) {
         var r = authService.verifyOtp(body.challengeId(), body.code());
         return ResponseEntity.status(HttpStatus.OK).body(new TokenResponse(
-                r.accessToken(), "Bearer", r.expiresIn(), r.userId(), r.isNewUser()));
+                r.accessToken(), r.refreshToken(), "Bearer", r.expiresIn(), r.userId(), r.isNewUser()));
+    }
+
+    @PostMapping("/token/refresh")
+    public RefreshResponse refresh(@Valid @RequestBody RefreshBody body) {
+        return authService.refresh(body.refreshToken());
+    }
+
+    @PostMapping("/logout")
+    public ResponseEntity<Void> logout(@Valid @RequestBody LogoutBody body) {
+        authService.logout(body.refreshToken());
+        return ResponseEntity.noContent().build();
     }
 }

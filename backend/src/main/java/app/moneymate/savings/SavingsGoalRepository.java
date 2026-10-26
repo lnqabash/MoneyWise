@@ -9,4 +9,7 @@ import java.util.UUID;
 public interface SavingsGoalRepository extends JpaRepository<SavingsGoal, UUID> {
     List<SavingsGoal> findByUserId(UUID userId);
     Optional<SavingsGoal> findByGoalIdAndUserId(UUID goalId, UUID userId);
+
+    // Active goals with an automatic rule (not manual), for the auto-save runner.
+    List<SavingsGoal> findByStatusAndRuleTypeNot(String status, String ruleType);
 }

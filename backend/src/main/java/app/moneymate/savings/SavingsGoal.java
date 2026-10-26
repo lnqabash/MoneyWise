@@ -80,6 +80,14 @@ public class SavingsGoal {
         }
     }
 
+    /** Withdraws from the goal; never below zero. Re-activates a reached goal. */
+    public void withdraw(long amountMinor) {
+        this.savedMinor = Math.max(0, this.savedMinor - amountMinor);
+        if ("reached".equals(this.status) && this.savedMinor < this.targetMinor) {
+            this.status = "active";
+        }
+    }
+
     public double progress() {
         return targetMinor == 0 ? 0 : (double) savedMinor / targetMinor;
     }

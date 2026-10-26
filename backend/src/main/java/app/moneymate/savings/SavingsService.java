@@ -1,15 +1,21 @@
 package app.moneymate.savings;
 
+import app.moneymate.budget.Expense;
+import app.moneymate.budget.ExpenseRepository;
 import app.moneymate.common.ApiException;
+import app.moneymate.ledger.LedgerService;
 import app.moneymate.savings.dto.SavingsDtos.ContributionBody;
 import app.moneymate.savings.dto.SavingsDtos.ContributionResponse;
+import app.moneymate.savings.dto.SavingsDtos.EmergencyFundResponse;
 import app.moneymate.savings.dto.SavingsDtos.GoalBody;
 import app.moneymate.savings.dto.SavingsDtos.GoalResponse;
+import app.moneymate.savings.dto.SavingsDtos.WithdrawalBody;
+import app.moneymate.savings.dto.SavingsDtos.WithdrawalResponse;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.temporal.ChronoUnit;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.UUID;
 
@@ -17,9 +23,14 @@ import java.util.UUID;
 public class SavingsService {
 
     private final SavingsGoalRepository goals;
+    private final LedgerService ledger;
+    private final ExpenseRepository expenses;
 
-    public SavingsService(SavingsGoalRepository goals) {
+    public SavingsService(SavingsGoalRepository goals, LedgerService ledger,
+                          ExpenseRepository expenses) {
         this.goals = goals;
+        this.ledger = ledger;
+        this.expenses = expenses;
     }
 
     @Transactional
@@ -50,9 +61,64 @@ public class SavingsService {
         }
         goal.contribute(body.amountMinor());
         goals.save(goal);
-        // Real impl: write a transactions ledger row + publish savings.swept event.
-        String txnId = UUID.randomUUID().toString();
-        return new ContributionResponse(txnId, goal.getSavedMinor(), goal.getStatus());
+
+        // Record the real money movement in the ledger (single source of truth).
+        // Idempotency key ties the save to the goal + a timestamp bucket.
+        String idem = "save:" + goalId + ":" + System.currentTimeMillis();
+        var txn = ledger.recordSaveSweep(userId, body.amountMinor(), goal.getCurrency(), goalId, idem);
+
+        return new ContributionResponse(txn.getTxnId().toString(), goal.getSavedMinor(), goal.getStatus());
+    }
+
+    @Transactional
+    public WithdrawalResponse withdraw(UUID userId, UUID goalId, WithdrawalBody body) {
+        SavingsGoal goal = requireOwned(userId, goalId);
+        if (body.amountMinor() > goal.getSavedMinor()) {
+            throw ApiException.businessRule("You can't withdraw more than you've saved");
+        }
+        // Soft-lock friction: protect savings discipline without locking people out.
+        if (goal.isSoftLocked() && !body.confirmSoftLock()) {
+            throw ApiException.businessRule("Confirm soft-lock override to proceed");
+        }
+
+        goal.withdraw(body.amountMinor());
+        goals.save(goal);
+
+        String idem = "withdraw:" + goalId + ":" + System.currentTimeMillis();
+        var txn = ledger.recordWithdrawal(userId, body.amountMinor(), goal.getCurrency(), goalId, idem);
+
+        long weeklyTarget = computeWeeklyTarget(goal) == null ? 0 : computeWeeklyTarget(goal);
+        String warning = weeklyTarget > 0
+                ? "This sets your goal back by about "
+                    + Math.max(1, Math.round((double) body.amountMinor() / weeklyTarget)) + " week(s)."
+                : "This reduces your saved balance.";
+
+        return new WithdrawalResponse(txn.getTxnId().toString(), goal.getSavedMinor(), goal.getStatus(), warning);
+    }
+
+    @Transactional(readOnly = true)
+    public EmergencyFundResponse emergencyFund(UUID userId) {
+        SavingsGoal fund = goals.findByUserId(userId).stream()
+                .filter(g -> "emergency_fund".equals(g.getGoalType()))
+                .findFirst()
+                .orElse(null);
+
+        long saved = fund == null ? 0 : fund.getSavedMinor();
+        String currency = fund == null ? "ZAR" : fund.getCurrency();
+
+        LocalDate windowStart = LocalDate.now().minusDays(56);
+        long twoMonthSpend = expenses.findByUserIdAndSpentOnGreaterThanEqual(userId, windowStart)
+                .stream().mapToLong(Expense::getAmountMinor).sum();
+        long monthlyExpenses = Math.max(1, twoMonthSpend / 2);
+
+        double coverage = (double) saved / monthlyExpenses;
+        String status = coverage >= 3 ? "secure" : coverage >= 1 ? "building" : "at_risk";
+        long targetThreeMonths = monthlyExpenses * 3;
+        String recommendation = "Aim for 3 months (" + money(currency, targetThreeMonths) + ") coverage.";
+
+        return new EmergencyFundResponse(
+                fund == null ? null : fund.getGoalId().toString(),
+                saved, monthlyExpenses, round2(coverage), status, recommendation);
     }
 
     private SavingsGoal requireOwned(UUID userId, UUID goalId) {
@@ -78,5 +144,10 @@ public class SavingsService {
 
     private double round2(double v) {
         return Math.round(v * 100.0) / 100.0;
+    }
+
+    private String money(String currency, long minor) {
+        String sym = switch (currency) { case "ZAR" -> "R"; case "KES" -> "KSh "; case "USD" -> "$"; default -> currency + " "; };
+        return sym + String.format("%.2f", minor / 100.0);
     }
 }

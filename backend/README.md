@@ -13,6 +13,14 @@ Architecture follows [ADR-0002](../docs/adr/0002-microservices-vs-monolith.md): 
 | `savings` | `POST/GET /v1/goals`, `GET /v1/goals/{id}`, `POST /v1/goals/{id}/contributions` | Goals, weekly targets, contributions |
 | `scam` | `POST /v1/scam/scan`, `POST /v1/scam/{id}/action` | Rule-based explainable detection; raw content hashed, never stored |
 | `health` | `GET /v1/health-score` | ⭐ AI Financial Health Score — 4 explainable pillars (see [Differentiators](../docs/16-differentiators.md)) |
+| `ledger` | `GET /v1/transactions` | Immutable, idempotent money ledger — single source of truth for all movements |
+
+**Tier 1 (fully-functional) additions:**
+- **Transactions ledger** — income, expenses, save sweeps, and withdrawals all post real, idempotent ledger rows (`app.moneymate.ledger`).
+- **Life-events** — recording income publishes `IncomeRecordedEvent`, which triggers a budget re-forecast (in-process stand-in for Azure Service Bus).
+- **Savings rules engine** — `POST /v1/goals/auto-save/run` (and a weekly scheduler) run affordability-aware auto-saves: skip/reduce on lean weeks, full on good weeks.
+- **Withdrawals + emergency fund** — `POST /v1/goals/{id}/withdrawals` (soft-lock friction), `GET /v1/emergency-fund` (coverage months).
+- **Auth hardening** — refresh tokens with rotation + reuse detection (`POST /v1/auth/token/refresh`, `POST /v1/auth/logout`) and OTP request rate limiting.
 
 The **web demo** (served at `/`) also includes a ⭐ **voice-first assistant** (browser Web Speech API) that answers "how much can I spend?", "what's my health score?", and routes scam checks by voice.
 
@@ -94,7 +102,9 @@ src/main/java/app/moneymate
 ├── budget/                        # income, expenses, safe-to-spend calculator
 ├── savings/                       # goals + contributions
 ├── scam/                          # explainable rule-based Scam Shield
-└── health/                        # AI Financial Health Score (4 pillars)
+├── health/                        # AI Financial Health Score (4 pillars)
+├── ledger/                        # immutable transactions ledger
+└── common/events/                 # in-process life-events (income.recorded)
 src/main/resources
 ├── static/                        # web demo (index.html, app.js, styles.css)
 ├── application.yml                # default (H2 + seed)

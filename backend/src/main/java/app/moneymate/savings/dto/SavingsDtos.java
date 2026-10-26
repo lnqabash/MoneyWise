@@ -28,4 +28,12 @@ public final class SavingsDtos {
     public record ContributionBody(@Min(1) long amountMinor, String source) {}
 
     public record ContributionResponse(String txnId, long savedMinor, String status) {}
+
+    public record WithdrawalBody(@Min(1) long amountMinor, String reason, boolean confirmSoftLock) {}
+
+    public record WithdrawalResponse(String txnId, long savedMinor, String status, String warning) {}
+
+    // Emergency fund view (docs/07 §4)
+    public record EmergencyFundResponse(String goalId, long savedMinor, long monthlyExpensesMinor,
+                                        double coverageMonths, String status, String recommendation) {}
 }

@@ -2,6 +2,7 @@ package app.moneymate;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
  * MoneyMate backend — modular monolith (thin vertical slice).
@@ -16,6 +17,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * profile to use PostgreSQL via docker-compose.
  */
 @SpringBootApplication
+@EnableScheduling
 public class MoneyMateApplication {
     public static void main(String[] args) {
         SpringApplication.run(MoneyMateApplication.class, args);

@@ -3,8 +3,11 @@ package app.moneymate.savings;
 import app.moneymate.common.security.CurrentUser;
 import app.moneymate.savings.dto.SavingsDtos.ContributionBody;
 import app.moneymate.savings.dto.SavingsDtos.ContributionResponse;
+import app.moneymate.savings.dto.SavingsDtos.EmergencyFundResponse;
 import app.moneymate.savings.dto.SavingsDtos.GoalBody;
 import app.moneymate.savings.dto.SavingsDtos.GoalResponse;
+import app.moneymate.savings.dto.SavingsDtos.WithdrawalBody;
+import app.moneymate.savings.dto.SavingsDtos.WithdrawalResponse;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,9 +21,11 @@ import java.util.UUID;
 public class SavingsController {
 
     private final SavingsService savingsService;
+    private final AutoSaveService autoSaveService;
 
-    public SavingsController(SavingsService savingsService) {
+    public SavingsController(SavingsService savingsService, AutoSaveService autoSaveService) {
         this.savingsService = savingsService;
+        this.autoSaveService = autoSaveService;
     }
 
     @PostMapping
@@ -44,5 +49,18 @@ public class SavingsController {
             @PathVariable UUID goalId, @Valid @RequestBody ContributionBody body) {
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(savingsService.contribute(CurrentUser.id(), goalId, body));
+    }
+
+    @PostMapping("/{goalId}/withdrawals")
+    public WithdrawalResponse withdraw(
+            @PathVariable UUID goalId, @Valid @RequestBody WithdrawalBody body) {
+        return savingsService.withdraw(CurrentUser.id(), goalId, body);
+    }
+
+    /** Demo convenience: run the affordability-aware auto-save engine now. */
+    @PostMapping("/auto-save/run")
+    public java.util.Map<String, Object> runAutoSave() {
+        int swept = autoSaveService.runAll();
+        return java.util.Map.of("sweptGoals", swept);
     }
 }

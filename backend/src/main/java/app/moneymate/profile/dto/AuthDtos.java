@@ -23,10 +23,17 @@ public final class AuthDtos {
             @NotBlank @Pattern(regexp = "\\d{6}", message = "must be a 6-digit code") String code) {}
 
     public record TokenResponse(
-            String accessToken, String tokenType, long expiresIn,
+            String accessToken, String refreshToken, String tokenType, long expiresIn,
             UUID userId, boolean isNewUser) {}
+
+    public record RefreshBody(@NotBlank String refreshToken) {}
+
+    public record RefreshResponse(String accessToken, String refreshToken, String tokenType, long expiresIn) {}
+
+    public record LogoutBody(@NotBlank String refreshToken) {}
 
     // Internal service results
     public record OtpRequestResult(UUID challengeId, long expiresIn, String devCode) {}
-    public record TokenResult(String accessToken, long expiresIn, UUID userId, boolean isNewUser) {}
+    public record TokenResult(String accessToken, String refreshToken, long expiresIn,
+                              UUID userId, boolean isNewUser) {}
 }
