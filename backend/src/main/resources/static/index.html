@@ -91,6 +91,19 @@
           <div id="fc-lean" class="fc-lean hidden"></div>
         </div>
 
+        <h3 class="section-title">Add an expense</h3>
+        <div class="card">
+          <p class="hint">Just describe it — we'll sort it into the right category for you.</p>
+          <div class="row">
+            <input id="exp-note" type="text" value="Shell petrol station" placeholder="e.g. Shell petrol, MTN airtime, Shoprite" />
+          </div>
+          <div class="row">
+            <input id="exp-amount" type="number" value="90" min="1" title="Amount (R)" />
+            <button id="btn-add-expense" class="btn btn-primary">Add expense</button>
+          </div>
+          <p class="toast hidden" id="exp-toast"></p>
+        </div>
+
         <h3 class="section-title">Your spending</h3>
         <div id="envelopes" class="envelopes"></div>
 
@@ -127,6 +140,18 @@
             <button id="btn-contribute" class="btn btn-primary">Save R<span id="contrib-label">20</span></button>
           </div>
           <p class="toast hidden" id="save-toast"></p>
+        </div>
+
+        <h3 class="section-title">Got a big payment?</h3>
+        <div class="card">
+          <h4>💰 Spread it out</h4>
+          <p class="hint">Turn a lump sum into a steady weekly "salary" so it lasts.</p>
+          <div class="row">
+            <input id="smooth-amount" type="number" value="2000" min="1" title="Amount (R)" />
+            <input id="smooth-weeks" type="number" value="4" min="1" max="52" title="Weeks" style="max-width:90px" />
+          </div>
+          <button id="btn-smooth" class="btn btn-primary">Make it a weekly salary</button>
+          <div id="smooth-result" class="smooth-result hidden"></div>
         </div>
       </div>
 

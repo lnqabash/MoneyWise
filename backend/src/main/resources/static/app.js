@@ -618,6 +618,70 @@
     });
   }
 
+  // ============ LUMP-SUM SMOOTHING ============
+  $("btn-smooth").addEventListener("click", async () => {
+    const rands = parseInt($("smooth-amount").value, 10) || 0;
+    const weeks = parseInt($("smooth-weeks").value, 10) || 1;
+    if (rands <= 0) return;
+    const btn = $("btn-smooth");
+    btn.disabled = true;
+    try {
+      const s = await api("/budget/smooth", {
+        method: "POST",
+        body: { amountMinor: rands * 100, currency: "ZAR", weeks },
+      });
+      const el = $("smooth-result");
+      el.innerHTML =
+        `<div class="smooth-salary"><div class="amt">${fmtMoney(s.perWeekMinor, s.currency)}</div>` +
+        `<div class="lbl">per week for ${s.weeks} weeks — your personal salary</div></div>` +
+        `<div class="smooth-breakdown">` +
+        `<div><div class="b-val">${fmtMoney(s.toEmergencyMinor, s.currency)}</div><div class="b-lbl">Emergency buffer</div></div>` +
+        `<div><div class="b-val">${fmtMoney(s.toGoalsMinor, s.currency)}</div><div class="b-lbl">To your goals</div></div>` +
+        `</div>` +
+        `<p class="smooth-reason">${s.explanation.reasons[s.explanation.reasons.length - 1]}</p>`;
+      show(el);
+    } catch (e) {
+      const el = $("smooth-result");
+      el.innerHTML = `<p class="error">${e.message}</p>`;
+      show(el);
+    } finally {
+      btn.disabled = false;
+    }
+  });
+
+  // ============ ADD EXPENSE (auto-categorisation) ============
+  $("btn-add-expense").addEventListener("click", async () => {
+    const note = $("exp-note").value.trim();
+    const rands = parseInt($("exp-amount").value, 10) || 0;
+    if (rands <= 0) return;
+    const btn = $("btn-add-expense");
+    btn.disabled = true;
+    try {
+      // No category sent -> backend auto-categorises from the note.
+      const r = await api("/expenses", {
+        method: "POST",
+        body: { amountMinor: rands * 100, currency: "ZAR", note, spentOn: new Date().toISOString().slice(0, 10) },
+      });
+      const toast = $("exp-toast");
+      toast.textContent = r.autoCategorised
+        ? `✓ Added. We filed this under "${r.category}" for you.`
+        : `✓ Added under "${r.category}".`;
+      show(toast);
+      setTimeout(() => hide(toast), 4000);
+      $("exp-note").value = "";
+      // Refresh the parts of the dashboard this affects.
+      await loadBudget();
+      await loadForecast();
+      await loadHealthScore();
+    } catch (e) {
+      const toast = $("exp-toast");
+      toast.textContent = e.message;
+      show(toast);
+    } finally {
+      btn.disabled = false;
+    }
+  });
+
   // Demo helper: Grace & Maria contribute from their own tokens so a full
   // round can be shown. Real app: each member pays from their own device.
   async function othersContribute(circleId, amountMinor) {

@@ -296,3 +296,14 @@ input:focus, textarea:focus { outline: 2px solid var(--mm-primary); border-color
 .circle-actions { display: flex; gap: 8px; }
 .circle-actions .btn { flex: 1; }
 .payout-blocked { background: #FEECE8; border: 1px solid #F3C9BF; color: #7a2316; border-radius: 10px; padding: 10px; font-size: 13px; margin-top: 8px; }
+
+/* ===== Lump-sum smoothing result ===== */
+.smooth-result { margin-top: 12px; background: #EAF5EF; border: 1px solid #CDE6D8; border-radius: 12px; padding: 14px; }
+.smooth-salary { text-align: center; }
+.smooth-salary .amt { font-size: 30px; font-weight: 800; color: var(--mm-primary); }
+.smooth-salary .lbl { font-size: 13px; color: var(--mm-muted); }
+.smooth-breakdown { display: flex; gap: 10px; margin-top: 12px; }
+.smooth-breakdown > div { flex: 1; background: var(--mm-surface); border: 1px solid var(--mm-line); border-radius: 10px; padding: 10px; text-align: center; }
+.smooth-breakdown .b-val { font-weight: 800; }
+.smooth-breakdown .b-lbl { font-size: 11px; color: var(--mm-muted); }
+.smooth-reason { font-size: 13px; color: var(--mm-primary-dark); margin-top: 10px; }
