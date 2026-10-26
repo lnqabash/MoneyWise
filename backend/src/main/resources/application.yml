@@ -1,0 +1,48 @@
+spring:
+  application:
+    name: moneymate-backend
+  profiles:
+    # "seed" loads the Thandi demo persona. Drop it for an empty DB.
+    active: seed
+  # Default profile = H2 in-memory. No external dependencies required.
+  datasource:
+    url: jdbc:h2:mem:moneymate;DB_CLOSE_DELAY=-1;MODE=PostgreSQL;DATABASE_TO_LOWER=TRUE
+    username: sa
+    password: ""
+    driver-class-name: org.h2.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: false
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+server:
+  port: 8080
+
+moneymate:
+  security:
+    # Demo signing key (override via env MONEYMATE_SECURITY_JWT-SECRET in real envs).
+    jwt-secret: "change-me-in-production-this-is-a-demo-only-256bit-secret-key!!"
+    access-token-ttl-minutes: 15
+  otp:
+    # In the slice we do NOT send real SMS. The OTP is returned in the response
+    # ONLY when expose-otp=true (dev convenience). Never expose in production.
+    expose-otp: true
+    ttl-seconds: 300
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+
+logging:
+  level:
+    app.moneymate: INFO

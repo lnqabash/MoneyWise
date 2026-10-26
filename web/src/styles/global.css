@@ -1,0 +1,179 @@
+/* MoneyMate design tokens — docs/12-ui-ux-design.md */
+:root {
+  --mm-primary: #0b6e4f;
+  --mm-primary-dark: #07513a;
+  --mm-accent: #f4a700;
+  --mm-safe: #2e9e5b;
+  --mm-warn: #e8a33d;
+  --mm-danger: #c8402b;
+  --mm-ink: #1a2b26;
+  --mm-muted: #5b6b65;
+  --mm-bg: #f7faf8;
+  --mm-surface: #ffffff;
+  --mm-line: #e1e8e4;
+  --radius: 14px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  font-family: "Inter", "Noto Sans", -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: #11201b;
+  color: var(--mm-ink);
+  font-size: 18px; /* large default for low-vision (a11y spec) */
+  line-height: 1.5;
+}
+
+#root {
+  display: flex;
+  justify-content: center;
+  padding: 16px;
+}
+
+/* Phone shell */
+.phone {
+  width: 100%;
+  max-width: 420px;
+  background: var(--mm-bg);
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  min-height: 760px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.statusbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px;
+  font-size: 13px;
+  color: var(--mm-muted);
+}
+.conn {
+  color: var(--mm-safe);
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-size: 13px;
+}
+.conn.offline {
+  color: var(--mm-warn);
+}
+
+.screen {
+  padding: 0 20px 90px;
+  flex: 1;
+}
+
+/* Buttons & inputs */
+.btn {
+  width: 100%;
+  min-height: 56px;
+  margin-top: 14px;
+  border: none;
+  cursor: pointer;
+  border-radius: 12px;
+  font-size: 17px;
+  font-weight: 700;
+  font-family: inherit;
+}
+.btn-primary {
+  background: var(--mm-primary);
+  color: #fff;
+}
+.btn-primary:hover {
+  background: var(--mm-primary-dark);
+}
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+label {
+  display: block;
+  font-size: 14px;
+  color: var(--mm-muted);
+  margin: 10px 0 6px;
+}
+input,
+textarea {
+  width: 100%;
+  padding: 14px;
+  font-size: 18px;
+  font-family: inherit;
+  border: 1.5px solid var(--mm-line);
+  border-radius: 12px;
+  background: #fff;
+  color: var(--mm-ink);
+}
+input:focus,
+textarea:focus {
+  outline: 2px solid var(--mm-primary);
+  border-color: var(--mm-primary);
+}
+
+.card {
+  background: var(--mm-surface);
+  border: 1px solid var(--mm-line);
+  border-radius: var(--radius);
+  padding: 18px;
+  margin: 12px 0;
+}
+.hint {
+  font-size: 14px;
+  color: var(--mm-muted);
+  margin-top: 6px;
+}
+.error {
+  color: var(--mm-danger);
+  font-size: 14px;
+  margin-top: 10px;
+  min-height: 18px;
+}
+.section-title {
+  margin: 18px 0 10px;
+  font-size: 16px;
+}
+.chip {
+  background: var(--mm-accent);
+  color: var(--mm-primary-dark);
+  border: none;
+  cursor: pointer;
+  border-radius: 16px;
+  padding: 8px 16px;
+  font-weight: 700;
+  font-size: 14px;
+  font-family: inherit;
+}
+.chip-ghost {
+  background: #eaf5ef;
+  color: var(--mm-primary-dark);
+}
+
+.spinner {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 2px solid #fff;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

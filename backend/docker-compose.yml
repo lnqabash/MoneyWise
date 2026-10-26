@@ -1,0 +1,39 @@
+# Runs MoneyMate backend against PostgreSQL (the "docker" profile).
+# Usage:  docker compose up --build
+# API:    http://localhost:8080/swagger-ui.html
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: moneymate
+      POSTGRES_USER: moneymate
+      POSTGRES_PASSWORD: moneymate
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U moneymate -d moneymate"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  backend:
+    build: .
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      SPRING_PROFILES_ACTIVE: docker,seed
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: moneymate
+      DB_USER: moneymate
+      DB_PASSWORD: moneymate
+      # Override the demo JWT secret in any real deployment.
+      MONEYMATE_SECURITY_JWT-SECRET: "change-me-in-production-this-is-a-demo-only-256bit-secret-key!!"
+    ports:
+      - "8080:8080"
+
+volumes:
+  pgdata:

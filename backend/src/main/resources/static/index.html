@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MoneyMate — AI Financial Confidence Assistant</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Phone frame for a mobile-first feel -->
+  <div class="phone">
+    <header class="statusbar">
+      <span>9:41</span>
+      <span id="conn-indicator" title="Connection">● online</span>
+    </header>
+
+    <!-- ===== Sign-in view ===== -->
+    <section id="view-auth" class="view active">
+      <div class="brand">
+        <div class="brand-logo">🪙</div>
+        <h1>MoneyMate</h1>
+        <p class="tagline">Money that makes sense.<br/>Confidence that lasts.</p>
+      </div>
+      <div class="promises">
+        <div><span>📊</span>Plan your money</div>
+        <div><span>🎯</span>Save a little</div>
+        <div><span>🛡️</span>Stay safe from scams</div>
+      </div>
+
+      <div class="card">
+        <label for="phone">Your phone number</label>
+        <input id="phone" type="tel" value="+27830000001" inputmode="tel" />
+        <button id="btn-request-otp" class="btn btn-primary">Send me a code</button>
+
+        <div id="otp-step" class="hidden">
+          <label for="otp-code">Enter the 6-digit code</label>
+          <input id="otp-code" type="text" inputmode="numeric" maxlength="6" placeholder="••••••" />
+          <p class="hint" id="dev-code-hint"></p>
+          <button id="btn-verify-otp" class="btn btn-primary">Sign in</button>
+        </div>
+        <p class="error" id="auth-error"></p>
+      </div>
+      <p class="demo-note">Demo account pre-seeded as <strong>Thandi</strong>, a gig driver.</p>
+    </section>
+
+    <!-- ===== App shell (after sign-in) ===== -->
+    <section id="view-app" class="view">
+      <header class="appbar">
+        <div>
+          <h2 id="greeting">Sawubona 👋</h2>
+          <span class="date" id="today-date"></span>
+        </div>
+        <button id="btn-logout" class="avatar" title="Sign out">T</button>
+      </header>
+
+      <!-- Dashboard tab -->
+      <div id="tab-home" class="tab active">
+        <div class="hero" id="hero-sts">
+          <span class="hero-label">You can safely spend today</span>
+          <div class="hero-amount" id="sts-amount">…</div>
+          <button class="chip" id="btn-why">Why this number?</button>
+          <span class="hero-conf" id="sts-conf"></span>
+        </div>
+
+        <div id="why-panel" class="why hidden">
+          <h4>Here's how we worked it out</h4>
+          <ul id="why-reasons"></ul>
+          <span class="model-tag" id="why-model"></span>
+        </div>
+
+        <h3 class="section-title">Your Financial Health Score</h3>
+        <div class="health-card" id="health-card">
+          <div class="health-ring" id="health-ring">
+            <span class="health-num" id="health-num">…</span>
+          </div>
+          <div class="health-info">
+            <span class="health-band" id="health-band"></span>
+            <p class="health-summary" id="health-summary"></p>
+            <button class="chip chip-ghost" id="btn-health-detail">See the 4 pillars</button>
+          </div>
+        </div>
+        <div id="health-pillars" class="pillars hidden"></div>
+
+        <h3 class="section-title">Your spending</h3>
+        <div id="envelopes" class="envelopes"></div>
+
+        <h3 class="section-title">Your goal</h3>
+        <div id="goal-card" class="goal-card">Loading…</div>
+
+        <div class="tip">
+          <span>💡</span>
+          <div><strong>Tip of the day</strong><br/>Saving on good days beats forcing it on slow ones.</div>
+        </div>
+      </div>
+
+      <!-- Save tab -->
+      <div id="tab-save" class="tab">
+        <h3 class="section-title">Savings Centre</h3>
+        <div id="goals-list"></div>
+        <div class="card">
+          <h4>Add to a goal</h4>
+          <p class="hint">Good day? Pop a little into your jar.</p>
+          <div class="row">
+            <input id="contrib-amount" type="number" value="20" min="1" />
+            <button id="btn-contribute" class="btn btn-primary">Save R<span id="contrib-label">20</span></button>
+          </div>
+          <p class="toast hidden" id="save-toast"></p>
+        </div>
+      </div>
+
+      <!-- Scam Shield tab -->
+      <div id="tab-scam" class="tab">
+        <h3 class="section-title">🛡️ Scam Shield</h3>
+        <div class="card">
+          <p class="hint">Got a suspicious message? Paste it here and we'll check it together — no judgement.</p>
+          <textarea id="scam-input" rows="4" placeholder="Paste the message or link here…">You won R5000! Click http://b1t.ly/claim to verify your bank PIN immediately</textarea>
+          <button id="btn-scan" class="btn btn-primary">Check this message</button>
+        </div>
+        <div id="scam-result" class="hidden"></div>
+      </div>
+
+      <!-- Learn tab (static preview) -->
+      <div id="tab-learn" class="tab">
+        <h3 class="section-title">📚 Financial Coach</h3>
+        <div class="lesson"><span class="play">▶</span><div><strong>Budgeting on uneven income</strong><br/><span class="hint">2 min · audio · offline ✓</span></div></div>
+        <div class="lesson"><span class="play">▶</span><div><strong>Spotting a scam</strong><br/><span class="hint">2 min · audio</span></div></div>
+        <div class="lesson locked"><span class="play">🔒</span><div><strong>Building an emergency fund</strong><br/><span class="hint">Unlocks next</span></div></div>
+        <p class="demo-note">Learning content is a static preview in this demo.</p>
+      </div>
+
+      <!-- Voice assistant FAB + panel -->
+      <button id="btn-voice" class="voice-fab" title="Ask MoneyMate">🎤</button>
+      <div id="voice-panel" class="voice-panel hidden">
+        <div class="voice-sheet">
+          <button id="voice-close" class="voice-close">×</button>
+          <div class="voice-orb" id="voice-orb">🎤</div>
+          <p class="voice-status" id="voice-status">Tap the mic and ask me something</p>
+          <p class="voice-heard" id="voice-heard"></p>
+          <p class="voice-reply" id="voice-reply"></p>
+          <div class="voice-examples">
+            <span>Try:</span>
+            <button class="voice-eg">How much can I spend today?</button>
+            <button class="voice-eg">Check a scam</button>
+            <button class="voice-eg">What is my health score?</button>
+          </div>
+          <button id="voice-mic" class="btn btn-primary">Start talking</button>
+        </div>
+      </div>
+
+      <!-- Bottom nav -->
+      <nav class="bottom-nav">
+        <button class="nav-item active" data-tab="home"><span>🏠</span>Home</button>
+        <button class="nav-item" data-tab="save"><span>🎯</span>Save</button>
+        <button class="nav-item scam" data-tab="scam"><span>🛡️</span>Shield</button>
+        <button class="nav-item" data-tab="learn"><span>📚</span>Learn</button>
+      </nav>
+    </section>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

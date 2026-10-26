@@ -1,0 +1,32 @@
+.bottom-nav {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #fff;
+  border-top: 1px solid var(--mm-line);
+  display: flex;
+  justify-content: space-around;
+  padding: 8px 0 12px;
+}
+.nav-item {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  font-size: 11px;
+  color: var(--mm-muted);
+  min-width: 56px;
+}
+.nav-item span {
+  font-size: 20px;
+}
+.nav-item.active {
+  color: var(--mm-primary);
+  font-weight: 700;
+}

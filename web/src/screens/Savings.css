@@ -1,0 +1,63 @@
+.goal-item {
+  background: var(--mm-surface);
+  border: 1px solid var(--mm-line);
+  border-radius: var(--radius);
+  padding: 16px;
+  margin-bottom: 10px;
+}
+.goal-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.goal-pct {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--mm-primary);
+}
+.goal-bar {
+  height: 12px;
+  background: var(--mm-line);
+  border-radius: 6px;
+  margin: 10px 0 6px;
+  overflow: hidden;
+}
+.goal-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--mm-primary), var(--mm-safe));
+  border-radius: 6px;
+  transition: width 0.5s ease;
+}
+.goal-sub {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+}
+.streak {
+  background: #fef3d6;
+  color: #b07a00;
+  border-radius: 11px;
+  padding: 3px 10px;
+  font-size: 12px;
+  font-weight: 700;
+}
+.row {
+  display: flex;
+  gap: 10px;
+  align-items: flex-end;
+}
+.row input {
+  flex: 1;
+}
+.row .btn {
+  margin-top: 0;
+  flex: 1.4;
+}
+.toast {
+  background: #eaf5ef;
+  color: var(--mm-primary-dark);
+  border-radius: 10px;
+  padding: 10px;
+  margin-top: 12px;
+  font-weight: 600;
+}

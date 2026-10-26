@@ -1,0 +1,190 @@
+.appbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0 4px;
+}
+.appbar h2 {
+  font-size: 22px;
+}
+.appbar .date {
+  font-size: 14px;
+  color: var(--mm-muted);
+}
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--mm-line);
+  background: #fff;
+  color: var(--mm-primary);
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.hero {
+  background: linear-gradient(160deg, var(--mm-primary), var(--mm-primary-dark));
+  color: #fff;
+  border-radius: 18px;
+  padding: 22px;
+  margin-top: 10px;
+  position: relative;
+}
+.hero-label {
+  color: #cdebd9;
+  font-size: 14px;
+}
+.hero-amount {
+  font-size: 52px;
+  font-weight: 800;
+  margin: 4px 0 12px;
+}
+.hero-conf {
+  position: absolute;
+  right: 22px;
+  bottom: 22px;
+  color: #cdebd9;
+  font-size: 12px;
+}
+
+.why {
+  background: #eaf5ef;
+  border: 1px solid #cde6d8;
+  border-radius: 12px;
+  padding: 16px;
+  margin-top: 10px;
+}
+.why h4 {
+  color: var(--mm-primary-dark);
+  margin-bottom: 8px;
+}
+.why ul {
+  margin-left: 18px;
+}
+.why li {
+  margin: 6px 0;
+}
+.model-tag {
+  font-size: 11px;
+  color: var(--mm-muted);
+}
+
+/* Health score */
+.health-card {
+  background: var(--mm-surface);
+  border: 1px solid var(--mm-line);
+  border-radius: var(--radius);
+  padding: 16px;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+.health-ring {
+  width: 86px;
+  height: 86px;
+  min-width: 86px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  position: relative;
+}
+.health-ring::after {
+  content: "";
+  position: absolute;
+  inset: 8px;
+  background: var(--mm-surface);
+  border-radius: 50%;
+}
+.health-num {
+  position: relative;
+  z-index: 1;
+  font-size: 26px;
+  font-weight: 800;
+}
+.health-band {
+  font-weight: 700;
+  color: var(--mm-primary);
+}
+.health-summary {
+  font-size: 14px;
+  color: var(--mm-muted);
+  margin: 4px 0 8px;
+}
+
+.pillars {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 10px;
+}
+.pillar {
+  background: var(--mm-surface);
+  border: 1px solid var(--mm-line);
+  border-radius: 12px;
+  padding: 12px 14px;
+}
+.pillar-top {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  font-weight: 600;
+}
+.pillar-bar {
+  height: 8px;
+  background: var(--mm-line);
+  border-radius: 4px;
+  margin: 8px 0;
+  overflow: hidden;
+}
+.pillar-fill {
+  height: 100%;
+  border-radius: 4px;
+}
+.pillar-reason {
+  font-size: 13px;
+  color: var(--mm-muted);
+}
+
+.envelopes {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.env {
+  background: var(--mm-surface);
+  border: 1px solid var(--mm-line);
+  border-radius: 12px;
+  padding: 12px 14px;
+}
+.env-top {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+}
+.env-bar {
+  height: 8px;
+  background: var(--mm-line);
+  border-radius: 4px;
+  margin-top: 8px;
+  overflow: hidden;
+}
+.env-fill {
+  height: 100%;
+  background: var(--mm-safe);
+  border-radius: 4px;
+}
+
+.tip {
+  background: #fef3d6;
+  color: #7a5600;
+  border-radius: 12px;
+  padding: 14px;
+  margin-top: 16px;
+  display: flex;
+  gap: 12px;
+  font-size: 14px;
+}
+.tip span {
+  font-size: 20px;
+}
